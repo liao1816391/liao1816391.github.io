@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+
+    <title>Map | 寻找真实</title>
+    <meta name="author" content="LaoJQ">
+    <meta name="version" content="1.0.0">
+    <meta name="keywords" content>
+    <meta name="description" content="map概叙案例:    学生案例,例如要区分一个学生  往往需要使用到学号,是不能单纯的通过姓名和年龄作区分的    如果采用单个元素的集合  需要查找一个学生的名字,那么需要遍历直到找到为止    由于学号可以用于区分学生信息,那么学号是唯一的       Java提供了一种集合: Map特点 :    将键映射到值的对象,一个映射不能包含重复的键;并且每个键只能映射一个值.Map和Collection有何区别？        Map集合储存元素是成对出现的,Map集合的...">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="寻找真实" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">寻找真实</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end">
+                <span class="nav-text">后端</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/atom.xml">
+                <span class="nav-text">订阅</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://liao1816391.github.io.git"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#map概叙"><span class="toc-number">1.</span> <span class="toc-text">map概叙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Map集合的功能概叙"><span class="toc-number">2.</span> <span class="toc-text">Map集合的功能概叙:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加功能"><span class="toc-number">2.1.</span> <span class="toc-text">添加功能:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除功能"><span class="toc-number">2.2.</span> <span class="toc-text">删除功能:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#判断功能"><span class="toc-number">2.3.</span> <span class="toc-text">判断功能:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取功能"><span class="toc-number">2.4.</span> <span class="toc-text">获取功能:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#长度功能"><span class="toc-number">2.5.</span> <span class="toc-text">长度功能</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#map的子类-HashMap"><span class="toc-number">3.</span> <span class="toc-text">map的子类   HashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap-键值对的几种情况"><span class="toc-number">3.1.</span> <span class="toc-text">HashMap 键值对的几种情况</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LinkedHashMap的概叙与特点"><span class="toc-number">4.</span> <span class="toc-text">LinkedHashMap的概叙与特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TreeMap概叙以及案例"><span class="toc-number">5.</span> <span class="toc-text">TreeMap概叙以及案例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#练习"><span class="toc-number">6.</span> <span class="toc-text">练习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、统计字符串中每个字母出现的次数-例如-abcab-–-gt-a-2-b-2-c-1"><span class="toc-number">6.1.</span> <span class="toc-text">一、统计字符串中每个字母出现的次数    例如:  abcab    –&gt;   a(2)  b(2) c(1)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、HashMap嵌套HashMap案例"><span class="toc-number">6.2.</span> <span class="toc-text">二、HashMap嵌套HashMap案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、HashMap嵌套ArrayList案例"><span class="toc-number">6.3.</span> <span class="toc-text">三、HashMap嵌套ArrayList案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、ArrayList嵌套HashMap案例"><span class="toc-number">6.4.</span> <span class="toc-text">四、ArrayList嵌套HashMap案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、集合多层嵌套"><span class="toc-number">6.5.</span> <span class="toc-text">五、集合多层嵌套</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#面试题"><span class="toc-number">7.</span> <span class="toc-text">面试题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-HashMap和Hashtable的区别"><span class="toc-number">7.1.</span> <span class="toc-text">1.HashMap和Hashtable的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-List-Set-Map是否都继承自Collection接口"><span class="toc-number">7.2.</span> <span class="toc-text">2.List,Set,Map是否都继承自Collection接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-常见的集合类有哪些-都有哪些方法"><span class="toc-number">7.3.</span> <span class="toc-text">3.常见的集合类有哪些?都有哪些方法?</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            Map
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/2019/09/25/Map/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-09-25T14:36:37.274Z" itemprop="datePublished">2019-09-25</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/JavaBase-Map/">JavaBase,Map</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="map概叙"><a href="#map概叙" class="headerlink" title="map概叙"></a>map概叙</h2><pre><code>案例:
+    学生案例,例如要区分一个学生  往往需要使用到学号,是不能单纯的通过姓名和年龄作区分的
+    如果采用单个元素的集合  需要查找一个学生的名字,那么需要遍历直到找到为止
+    由于学号可以用于区分学生信息,那么学号是唯一的   
+    Java提供了一种集合: Map
+特点 :
+    将键映射到值的对象,一个映射不能包含重复的键;并且每个键只能映射一个值.
+Map和Collection有何区别？
+        Map集合储存元素是成对出现的,Map集合的键是唯一的,值是可重复的.
+        Collection集合储存的元素是单独出现的.Collection的儿子Set的唯一的,List是可重复的.
+注意: Map的数据结构值针对键有效,跟值无关
+      Collection集合的数据结构是针对元素有效</code></pre><a id="more"></a>
+<h2 id="Map集合的功能概叙"><a href="#Map集合的功能概叙" class="headerlink" title="Map集合的功能概叙:"></a>Map集合的功能概叙:</h2><h3 id="添加功能"><a href="#添加功能" class="headerlink" title="添加功能:"></a>添加功能:</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">V <span class="title">put</span><span class="params">(K key,V value)</span>		<span class="comment">//添加元素,还有另一个功能..</span></span></span><br><span class="line"><span class="function">	<span class="comment">//查看源码可以发现,第一次put的时候返回的是null   如果put一次以上那么覆盖以前的内容并返回之前的内容</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">putAll</span><span class="params">(Map&lt;? extends K,? extends V&gt; m)</span>		<span class="comment">//将指定集合添加进当前集合</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="删除功能"><a href="#删除功能" class="headerlink" title="删除功能:"></a>删除功能:</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span>  <span class="comment">//移除所有的键值对映射关系</span></span></span><br><span class="line"><span class="function">V <span class="title">remove</span><span class="params">(Object key)</span>	<span class="comment">//删除这个键的键值对元素,并把值返回</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="判断功能"><a href="#判断功能" class="headerlink" title="判断功能:"></a>判断功能:</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">containsKey</span><span class="params">(Object key)</span>  <span class="comment">//判断集合是否包含指定的键</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">containsValue</span><span class="params">(Object value)</span>   <span class="comment">//判断集合是否包含指定的值</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span>	<span class="comment">//判断集合是否为空</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="获取功能"><a href="#获取功能" class="headerlink" title="获取功能:"></a>获取功能:</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet()		<span class="comment">//获取的是键值对的set集合   用于遍历map的键值对使用</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>首先Map.Entry&lt;K, V&gt; 是一个接口    并且它是map接口里面的一个封闭接口(接口中的接口)    jdk1.2
+    方法:    </code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">equals(Object o)</span><br><span class="line">getKey()   返回此项对应的key</span><br><span class="line">getValue() 返回此项对应的value</span><br><span class="line">hashCode() 返回此映射项的哈希码值</span><br><span class="line">setValue(V value)  用指定的值替换此项对应的值   可选操作</span><br><span class="line">	注意:  这里修改值直接对map集合的键值对产生影响,并不是拿出来的就是单独的</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">V <span class="title">get</span><span class="params">(Object key)</span>					根据键获取值</span></span><br><span class="line"><span class="function">Set&lt;K&gt; <span class="title">keySet</span><span class="params">()</span>						返回此集合中包含的键的set集合</span></span><br><span class="line"><span class="function">Collection&lt;V&gt; <span class="title">values</span><span class="params">()</span>				返回此集合中包含的值的Collection集合</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="长度功能"><a href="#长度功能" class="headerlink" title="长度功能"></a>长度功能</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> 		返回此集合的键值对关系数量</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="map的子类-HashMap"><a href="#map的子类-HashMap" class="headerlink" title="map的子类   HashMap"></a>map的子类   HashMap</h2><h3 id="HashMap-键值对的几种情况"><a href="#HashMap-键值对的几种情况" class="headerlink" title="HashMap 键值对的几种情况"></a>HashMap 键值对的几种情况</h3><pre><code>1.键值对都是String     由于String的hashCode的特殊情况   故而常量池的同一个String的键唯一性保证
+2.键是Integer但是值是String的情况    这里只需要注意一下Integer类型的常量池问题不要混淆   Integer的hashCode方法得到的是数值
+    这里进而证明了   ==  比较的是内存地址 而非hashCode        
+        Integer i1 = new Integer(129);
+        Integer i2 = new Integer(129);            i1 == i2 --&gt; false /  i1.hashCode() == i2.hashCode()  true
+3.键是String但是值是普通对象(Student)
+4.键是普通对象但是值是String        如果想要实现对象内容相同值覆盖  那么需要重写hashCode与equals方法</code></pre><h2 id="LinkedHashMap的概叙与特点"><a href="#LinkedHashMap的概叙与特点" class="headerlink" title="LinkedHashMap的概叙与特点"></a>LinkedHashMap的概叙与特点</h2><pre><code>首先  它是HashMap的子类        Map 接口的哈希表和链接列表实现，具有可预知的迭代顺序。
+哈希表保证唯一性  链表保证有序性    它不会因为修改的顺序而影响它元素的先后顺序</code></pre><h2 id="TreeMap概叙以及案例"><a href="#TreeMap概叙以及案例" class="headerlink" title="TreeMap概叙以及案例"></a>TreeMap概叙以及案例</h2><pre><code>键是红黑树结构,可以保证键的排序和唯一性
+
+案例: 键与值都是String的类型  由于是红黑树结构,故而要实现比较性,要么元素具备比较性实现comparable接口 要么集合具备比较性传入比较器comparator
+String实现了comparable接口是先按照字母顺序排序再按字母个数
+
+键是一个普通对象,值是一个String        那么要么普通对象实现comparable接口,要么构造比较器</code></pre><h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><h3 id="一、统计字符串中每个字母出现的次数-例如-abcab-–-gt-a-2-b-2-c-1"><a href="#一、统计字符串中每个字母出现的次数-例如-abcab-–-gt-a-2-b-2-c-1" class="headerlink" title="一、统计字符串中每个字母出现的次数    例如:  abcab    –&gt;   a(2)  b(2) c(1)"></a>一、统计字符串中每个字母出现的次数    例如:  abcab    –&gt;   a(2)  b(2) c(1)</h3><pre><code>分析:    
+    方案一 : 定义统计变量,遍历字符串,得到每个字符作判断 对应变量自增即可  最后拼接输出结果 
+        但是这样扩展性很差 而且定义变量也多    比如字母大小写,数字,中文..........
+    方案二 : 定义一个Map 键是字符  值是统计类型  Integer        并且选择TreeMap  让这些个字符自然排序
+             拿字符串的每一个字符到Map中找 看返回值
+                null : 集合中没有这个字符  那么把这个字符以及次数1存入集合
+                非null : 集合中有这个字符 拿到它的值并 将值自增1 重新存入集合并覆盖原有值数据
+总结 : 对于统计未知数量的东西,可以考虑使用map 扩展性好</code></pre><h3 id="二、HashMap嵌套HashMap案例"><a href="#二、HashMap嵌套HashMap案例" class="headerlink" title="二、HashMap嵌套HashMap案例"></a>二、HashMap嵌套HashMap案例</h3><pre><code>假设年代广告公司(era)两个部门  开发和生产   开发部门两个人  生产部门两个人 请使用嵌套(nest)完成它 并遍历出来</code></pre><h3 id="三、HashMap嵌套ArrayList案例"><a href="#三、HashMap嵌套ArrayList案例" class="headerlink" title="三、HashMap嵌套ArrayList案例"></a>三、HashMap嵌套ArrayList案例</h3><h3 id="四、ArrayList嵌套HashMap案例"><a href="#四、ArrayList嵌套HashMap案例" class="headerlink" title="四、ArrayList嵌套HashMap案例"></a>四、ArrayList嵌套HashMap案例</h3><h3 id="五、集合多层嵌套"><a href="#五、集合多层嵌套" class="headerlink" title="五、集合多层嵌套"></a>五、集合多层嵌套</h3><pre><code>例如 : 
+    era公司
+        开发部门
+            人事组
+                员工对象1
+                员工对象2
+            美工组
+                员工对象3
+                员工对象4
+        生产部门
+            制作组
+                员工对象5
+                ..
+            组装组
+                员工对象x
+                ..
+        ...
+可以考虑map嵌套map再嵌套ArrayList等方法, 第一层map是公司  包含了各个部门  键是部门名称 值是部门集合
+    第二层是各个部门 包含了各个小组  键是小组名称 值是小组集合
+    第三层是各个小组 里面是各个小组的各个对象</code></pre><h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><h3 id="1-HashMap和Hashtable的区别"><a href="#1-HashMap和Hashtable的区别" class="headerlink" title="1.HashMap和Hashtable的区别"></a>1.HashMap和Hashtable的区别</h3><pre><code>这里要注意  一开始Hashtable就是这样命名的  虽然不规范但是就是这样和System类的arraycopy是一个道理
+Hashtable此类实现一个哈希表，该哈希表将键映射到相应的值。
+HashMap就是用来替代Hashtable的 就像ArrayList替代Vector一样
+Hashtable和Vector在jdk1.2以后就被更先进的HashMap替代了,单其子类Properties依然活跃于历史舞台,Properties集合是唯一一个与IO流相结合的集合
+区别 : 
+    Hashtable 线程安全,效率低。并不允许null键和null值
+    HashMap 线程不安全,效率高。允许null键和null值    当然null键也只能有一个,注意一点HashMap一开始是没有null的</code></pre><h3 id="2-List-Set-Map是否都继承自Collection接口"><a href="#2-List-Set-Map是否都继承自Collection接口" class="headerlink" title="2.List,Set,Map是否都继承自Collection接口"></a>2.List,Set,Map是否都继承自Collection接口</h3><pre><code>List和Set继承于Collection接口  Map本身就是一个顶层接口</code></pre><h3 id="3-常见的集合类有哪些-都有哪些方法"><a href="#3-常见的集合类有哪些-都有哪些方法" class="headerlink" title="3.常见的集合类有哪些?都有哪些方法?"></a>3.常见的集合类有哪些?都有哪些方法?</h3><pre><code>Collection
+    List
+        ArrayList类
+        Vector类
+        LinkedList类
+    Set
+        HashSet类
+            LinkedHashSet类
+        TreeSet类
+Map
+    HashMap类
+        LinkedHashMap类
+    Hashtable类
+    TreeMap类</code></pre>
+        
+    </section>
+</article>
+
+
+
+<div class="comments">
+    <div id="comments"></div>
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+    new Gitalk({
+        clientID: "7fbe80427f54741e289f",
+        clientSecret: "f34ed5fd92e54c9000bd37ba951948cb939deff5",
+        repo: "sanonz.github.io",
+        owner: "sanonz",
+        admin: ["sanonz"],
+        id: "2019/09/25/Map",
+        distractionFreeMode: true,
+        title: "Map",
+        body: "https://liao1816391.github.io.git/2019/09/25/Map/",
+        labels: ["JavaBase,Map"]
+    }).render('comments');
+    </script>
+</div>
+
+</div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+            
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+        </script>
+    
+
+</body>
+</html>
