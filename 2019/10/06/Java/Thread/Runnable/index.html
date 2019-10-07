@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+
+    <title>Runnable接口 | 寻找真实</title>
+    <meta name="author" content="LaoJQ">
+    <meta name="version" content="1.0.0">
+    <meta name="keywords" content>
+    <meta name="description" content="通过继承Thread类实现一个线程对象存在一个弊端,那就是java的单继承问题以及继承方式实现多线程需要实例多个对象,这些对象之间如果要做到数据共享只能通过静态的方式Runnable接口有效的解决了这些问题抽象方法Runnable接口只有一个run方法,实现类只需要重写这个方法即可。而它的实现类如果想要实现多线程,那么只需要创建含有Runnable类型参数的构造方法的线程对象即可1void run();简单的案例 :1234567891011121314Runnable ru...">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="寻找真实" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">寻找真实</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end">
+                <span class="nav-text">后端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Java">
+                <span class="nav-text">Java</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/atom.xml">
+                <span class="nav-text">订阅</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://liao1816391.github.io.git"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#抽象方法"><span class="toc-number">1.</span> <span class="toc-text">抽象方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对比继承Thread类的优势"><span class="toc-number">2.</span> <span class="toc-text">对比继承Thread类的优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#上述代码存在的问题"><span class="toc-number">3.</span> <span class="toc-text">上述代码存在的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关习题"><span class="toc-number">4.</span> <span class="toc-text">相关习题</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            Runnable接口
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/2019/10/06/Java/Thread/Runnable/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-06T11:46:38.000Z" itemprop="datePublished">2019-10-06</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Runnable/">Runnable</a>, <a class="article-tag-link" href="/tags/Thread/">Thread</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>通过继承Thread类实现一个线程对象存在一个弊端,那就是java的单继承问题
+以及继承方式实现多线程需要实例多个对象,这些对象之间如果要做到数据共享只能通过静态的方式
+Runnable接口有效的解决了这些问题</code></pre><a id="more"></a>
+
+<h2 id="抽象方法"><a href="#抽象方法" class="headerlink" title="抽象方法"></a>抽象方法</h2><pre><code>Runnable接口只有一个run方法,实现类只需要重写这个方法即可。
+而它的实现类如果想要实现多线程,那么只需要创建含有Runnable类型参数的构造方法的线程对象即可</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<pre><code>简单的案例 :</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Runnable runnable = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (num &lt; <span class="number">50</span>)</span><br><span class="line">            System.out.println(num++);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">Thread thread1 = <span class="keyword">new</span> Thread(runnable);</span><br><span class="line">Thread thread2 = <span class="keyword">new</span> Thread(runnable,<span class="string">"run2"</span>);</span><br><span class="line">System.out.println(thread1.getName());</span><br><span class="line">System.out.println(thread2.getName());</span><br><span class="line">thread1.start();</span><br><span class="line">thread2.start();</span><br></pre></td></tr></table></figure>
+
+<h2 id="对比继承Thread类的优势"><a href="#对比继承Thread类的优势" class="headerlink" title="对比继承Thread类的优势"></a>对比继承Thread类的优势</h2><pre><code>接下来以一个经典的售票案例对两者作对比
+假设电影院目前有《喜羊羊与灰太狼》票100张《仙剑奇侠传》票100张
+要求先出售喜羊羊与灰太狼再出售仙剑奇侠传并且有三个出售窗口,购票有100ms的延迟
+首先是继承Thread类的实现方式,代码如下 : </code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	Cinema cinema1 = <span class="keyword">new</span> Cinema(<span class="string">"窗口1"</span>);</span><br><span class="line">	Cinema cinema2 = <span class="keyword">new</span> Cinema(<span class="string">"窗口2"</span>);</span><br><span class="line">	Cinema cinema3 = <span class="keyword">new</span> Cinema(<span class="string">"窗口3"</span>);</span><br><span class="line">	cinema1.start();</span><br><span class="line">	cinema2.start();</span><br><span class="line">	cinema3.start();</span><br><span class="line">	cinema1.addTicket(<span class="keyword">new</span> Ticket(<span class="string">"喜羊羊与灰太狼"</span>,<span class="number">100</span>));</span><br><span class="line">	cinema1.addTicket(<span class="keyword">new</span> Ticket(<span class="string">"仙剑奇侠传"</span>,<span class="number">100</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cinema</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Cinema</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Cinema</span><span class="params">(String name)</span></span>&#123;<span class="keyword">super</span>(name);&#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> LinkedList&lt;Ticket&gt; tickets = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addTicket</span><span class="params">(Ticket ticket)</span></span>&#123;tickets.addLast(ticket);&#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (tickets.size() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                Ticket first = tickets.getFirst();</span><br><span class="line">                <span class="keyword">while</span> (first.getNumber() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        Thread.sleep(<span class="number">100</span>);</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">" : "</span> + first);</span><br><span class="line">                    first.setNumber(first.getNumber() - <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (tickets.size() &gt; <span class="number">0</span> &amp;&amp; tickets.getFirst().getNumber() &lt;= <span class="number">0</span>)</span><br><span class="line">                    tickets.removeFirst();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ticket</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> number;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Ticket</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Ticket</span><span class="params">(String name, <span class="keyword">int</span> number)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.number = number;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//  get/set...</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Ticket&#123;"</span> + name  + <span class="string">", 第"</span> + number + <span class="string">"张&#125;"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>运行结果如下 : </code></pre><p><img src="/images/Java/Thread/Runnable_ThreadTicket.PNG" alt></p>
+<pre><code>然后是实现Runnable接口的实现方式 :</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    LinkedList&lt;Ticket&gt; linked = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    linked.addLast(<span class="keyword">new</span> Ticket(<span class="string">"喜羊羊与灰太狼"</span>, <span class="number">100</span>));</span><br><span class="line">    linked.addLast(<span class="keyword">new</span> Ticket(<span class="string">"仙剑奇侠传"</span>, <span class="number">100</span>));</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (linked.size() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            Thread thread1 = <span class="keyword">new</span> Thread(linked.getFirst(), <span class="string">"窗口1"</span>);</span><br><span class="line">            Thread thread2 = <span class="keyword">new</span> Thread(linked.getFirst(), <span class="string">"窗口2"</span>);</span><br><span class="line">            Thread thread3 = <span class="keyword">new</span> Thread(linked.getFirst(), <span class="string">"窗口3"</span>);</span><br><span class="line">            thread1.start();</span><br><span class="line">            thread2.start();</span><br><span class="line">            thread3.start();</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                thread1.join();</span><br><span class="line">                thread2.join();</span><br><span class="line">                thread3.join();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            linked.removeFirst();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ticket</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> number;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Ticket</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Ticket</span><span class="params">(String name, <span class="keyword">int</span> number)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.number = number;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//  get/set...</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Ticket&#123;"</span> + name  + <span class="string">", 第"</span> + number + <span class="string">"张&#125;"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (number &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">100</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">" : "</span> + <span class="keyword">this</span>);</span><br><span class="line">            number--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>运行结果如下 :</code></pre><p><img src="/images/Java/Thread/Runnable_RunnableTicket.PNG" alt></p>
+<pre><code>大致来说,实现Runnable接口的方法实现多线程解决了单继承的麻烦(内部类实现多继承的除外)
+需要共享的成员不必定义为静态属性,一个对象可以被多个线程执行等...</code></pre><h2 id="上述代码存在的问题"><a href="#上述代码存在的问题" class="headerlink" title="上述代码存在的问题"></a>上述代码存在的问题</h2><pre><code>其实观察代码的执行结果,不难发现。都有出现同票甚至出现了负票
+出现这种情况的原因是由于CPU的执行具有原子性,即每次只执行最基础的操作
+比如i++这个操作就要分为三步,其中每一步都可能由于当前线程被其他线程抢占而执行了其他操作
+要解决这个问题,就要用到同步的相关技巧</code></pre><a href="/2019/10/06/Java/Thread/Synchronized/" title="Synchronized线程同步">Synchronized线程同步</a>
+
+<h2 id="相关习题"><a href="#相关习题" class="headerlink" title="相关习题"></a>相关习题</h2><a href="/2019/10/06/Java/Thread/Exercise/" title="线程练习">线程练习</a>
+        
+    </section>
+</article>
+
+
+
+<div class="comments">
+    <div id="comments"></div>
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+    new Gitalk({
+        clientID: "7fbe80427f54741e289f",
+        clientSecret: "f34ed5fd92e54c9000bd37ba951948cb939deff5",
+        repo: "liao1816391.github.io",
+        owner: "LaoJQ",
+        admin: ["LaoJQ"],
+        id: "2019/10/06/Java/Thread/Runnable",
+        distractionFreeMode: true,
+        title: "Runnable接口",
+        body: "https://liao1816391.github.io.git/2019/10/06/Java/Thread/Runnable/",
+        labels: ["Thread","Runnable"]
+    }).render('comments');
+    </script>
+</div>
+
+</div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+            
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+        </script>
+    
+
+</body>
+</html>

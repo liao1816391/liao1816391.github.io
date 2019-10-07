@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+
+    <title>线程练习 | 寻找真实</title>
+    <meta name="author" content="LaoJQ">
+    <meta name="version" content="1.0.0">
+    <meta name="keywords" content>
+    <meta name="description" content="这是和线程相关的练习题,共分为...概念Thread类1.为什么重写run方法?2.run()与start()的区别?3.一个实现了线程的对象调用两次start方法会发生什么?4.优先级高的线程先执行,对嘛?5.join()与sleep()的区别?6.以下代码执行stop()与interrupt()的运行结果分别是?1234567891011121314151617181920212223Thread my = new Thread()&amp;#123;    @Over...">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="寻找真实" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">寻找真实</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end">
+                <span class="nav-text">后端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Java">
+                <span class="nav-text">Java</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/atom.xml">
+                <span class="nav-text">订阅</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://liao1816391.github.io.git"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Thread类"><span class="toc-number">2.</span> <span class="toc-text">Thread类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Runnable接口"><span class="toc-number">3.</span> <span class="toc-text">Runnable接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Synchronized"><span class="toc-number">4.</span> <span class="toc-text">Synchronized</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#答案"><span class="toc-number">5.</span> <span class="toc-text">答案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概念-1"><span class="toc-number">5.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#thread类"><span class="toc-number">5.2.</span> <span class="toc-text">thread类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么重写run方法"><span class="toc-number">5.2.1.</span> <span class="toc-text">为什么重写run方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#run-与start-的区别"><span class="toc-number">5.2.2.</span> <span class="toc-text">run()与start()的区别?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#一个实现了线程的对象调用两次start方法会发生什么"><span class="toc-number">5.2.3.</span> <span class="toc-text">一个实现了线程的对象调用两次start方法会发生什么?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#优先级高的线程先执行-对嘛"><span class="toc-number">5.2.4.</span> <span class="toc-text">优先级高的线程先执行,对嘛?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Thread的join-与sleep-的区别"><span class="toc-number">5.2.5.</span> <span class="toc-text">Thread的join()与sleep()的区别?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#以下代码执行stop-与interrupt-的运行结果分别是"><span class="toc-number">5.2.6.</span> <span class="toc-text">以下代码执行stop()与interrupt()的运行结果分别是?</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Runnable接口-1"><span class="toc-number">5.3.</span> <span class="toc-text">Runnable接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#对比继承Thread类实现接口方式的好处是什么"><span class="toc-number">5.3.1.</span> <span class="toc-text">对比继承Thread类实现接口方式的好处是什么?</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            线程练习
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/2019/10/06/Java/Thread/Exercise/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-06T10:32:02.000Z" itemprop="datePublished">2019-10-06</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Exercise/">Exercise</a>, <a class="article-tag-link" href="/tags/Thread/">Thread</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>这是和线程相关的练习题,共分为...</code></pre><a id="more"></a>
+
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h2 id="Thread类"><a href="#Thread类" class="headerlink" title="Thread类"></a>Thread类</h2><pre><code>1.为什么重写run方法?
+
+2.run()与start()的区别?
+
+3.一个实现了线程的对象调用两次start方法会发生什么?
+
+4.优先级高的线程先执行,对嘛?
+
+5.join()与sleep()的区别?
+
+6.以下代码执行stop()与interrupt()的运行结果分别是?</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Thread my = <span class="keyword">new</span> Thread()&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"我现在要休息10秒 "</span>+<span class="keyword">new</span> Date());			<span class="comment">//①</span></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			Thread.sleep(<span class="number">10000</span>);</span><br><span class="line">			System.out.println(<span class="string">"我醒来了"</span>);							<span class="comment">//②</span></span><br><span class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">			System.out.println(<span class="string">"休息结束了,出现了异常 "</span>+<span class="keyword">new</span> Date());	<span class="comment">//③</span></span><br><span class="line">		&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">			System.out.println(<span class="string">"带上装备,开工! "</span>+<span class="keyword">new</span> Date());			<span class="comment">//④</span></span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"我休息好了 "</span>+<span class="keyword">new</span> Date());				<span class="comment">//⑤</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">my.start();</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">    <span class="comment">//my.stop();</span></span><br><span class="line">    <span class="comment">//my.interrupt();</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>7.对</code></pre><h2 id="Runnable接口"><a href="#Runnable接口" class="headerlink" title="Runnable接口"></a>Runnable接口</h2><pre><code>1.对比继承Thread类实现接口方式的好处是什么?
+
+2.</code></pre><h2 id="Synchronized"><a href="#Synchronized" class="headerlink" title="Synchronized"></a>Synchronized</h2><h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3><h3 id="thread类"><a href="#thread类" class="headerlink" title="thread类"></a>thread类</h3><h4 id="为什么重写run方法"><a href="#为什么重写run方法" class="headerlink" title="为什么重写run方法"></a>为什么重写run方法</h4><pre><code>不是所有代码都需要被线程执行,为了区分被线程执行的代码,java提供Thread类的run方法包含被执行的代码
+一般来说,被线程执行的方法比较耗时</code></pre><h4 id="run-与start-的区别"><a href="#run-与start-的区别" class="headerlink" title="run()与start()的区别?"></a>run()与start()的区别?</h4><pre><code>run()仅仅是封装被线程执行的普通代码,直接调用是普通方法
+start()首先启动了线程,然后由jvm调用线程的run方法</code></pre><h4 id="一个实现了线程的对象调用两次start方法会发生什么"><a href="#一个实现了线程的对象调用两次start方法会发生什么" class="headerlink" title="一个实现了线程的对象调用两次start方法会发生什么?"></a>一个实现了线程的对象调用两次start方法会发生什么?</h4><pre><code>抛IllegalThreadStateException非法线程状态异常,一个线程只能启动一次.</code></pre><h4 id="优先级高的线程先执行-对嘛"><a href="#优先级高的线程先执行-对嘛" class="headerlink" title="优先级高的线程先执行,对嘛?"></a>优先级高的线程先执行,对嘛?</h4><pre><code>不对,优先级高仅仅表示获取CPU执行权的概率高。要多次运行才能看出效果,存在随机性</code></pre><h4 id="Thread的join-与sleep-的区别"><a href="#Thread的join-与sleep-的区别" class="headerlink" title="Thread的join()与sleep()的区别?"></a>Thread的join()与sleep()的区别?</h4><pre><code>首先sleep是静态方法而join是普通成员方法
+调用线程对象的join方法可使得指定时间之后再执行后面的代码,这和sleep没什么区别
+但是当join不设置值或者0的时候可以等待调用的线程对象执行完毕,而sleep只能估算时间</code></pre><h4 id="以下代码执行stop-与interrupt-的运行结果分别是"><a href="#以下代码执行stop-与interrupt-的运行结果分别是" class="headerlink" title="以下代码执行stop()与interrupt()的运行结果分别是?"></a>以下代码执行stop()与interrupt()的运行结果分别是?</h4><pre><code>stop ： ①,③ ; interrupt : ①,③,④,⑤
+stop是直接中断线程，不会抛出异常,但是如果在try块内终止,会执行finally块
+interrupt是抛出异常形式的中断</code></pre><h3 id="Runnable接口-1"><a href="#Runnable接口-1" class="headerlink" title="Runnable接口"></a>Runnable接口</h3><h4 id="对比继承Thread类实现接口方式的好处是什么"><a href="#对比继承Thread类实现接口方式的好处是什么" class="headerlink" title="对比继承Thread类实现接口方式的好处是什么?"></a>对比继承Thread类实现接口方式的好处是什么?</h4><pre><code>避免了单继承的问题带来的局限性
+适合多个相同程序的代码处理同一个资源的情况,把线程同程序的代码、数据有效的分离
+    也就是一个对象可以让多个线程执行它,而继承方式是一个对象一个线程</code></pre>
+        
+    </section>
+</article>
+
+
+
+<div class="comments">
+    <div id="comments"></div>
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+    new Gitalk({
+        clientID: "7fbe80427f54741e289f",
+        clientSecret: "f34ed5fd92e54c9000bd37ba951948cb939deff5",
+        repo: "liao1816391.github.io",
+        owner: "LaoJQ",
+        admin: ["LaoJQ"],
+        id: "2019/10/06/Java/Thread/Exercise",
+        distractionFreeMode: true,
+        title: "线程练习",
+        body: "https://liao1816391.github.io.git/2019/10/06/Java/Thread/Exercise/",
+        labels: ["Thread","Exercise"]
+    }).render('comments');
+    </script>
+</div>
+
+</div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+            
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+        </script>
+    
+
+</body>
+</html>

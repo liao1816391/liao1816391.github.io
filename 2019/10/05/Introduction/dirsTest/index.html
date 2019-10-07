@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+
+    <title>JDK环境搭建 | 寻找真实</title>
+    <meta name="author" content="LaoJQ">
+    <meta name="version" content="1.0.0">
+    <meta name="keywords" content>
+    <meta name="description" content="在我基本掌握了hexo的最基础操作步骤之后,对自己学习的知识点作了一番梳理.java是我接触计算机编程正式开始学习的第一门语言,那么就先开始学习的第一步.搭建JDK环境,在这之前。先就计算机作了一个最基本的概叙计算机软件开发什么是软件?一系列按照指定顺序组织的计算机数据(也就是信息--&amp;gt;二进制)与指令(处理数据的方式)的集合常见软件 :系统软件 :    DOS(Disc Operate System)、Windows、Liux、Mac...    最早期是DOS后期出现了...">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="寻找真实" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">寻找真实</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end">
+                <span class="nav-text">后端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Java">
+                <span class="nav-text">Java</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/atom.xml">
+                <span class="nav-text">订阅</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://liao1816391.github.io.git"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#计算机软件开发"><span class="toc-number">1.</span> <span class="toc-text">计算机软件开发</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是软件"><span class="toc-number">1.1.</span> <span class="toc-text">什么是软件?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见软件"><span class="toc-number">1.2.</span> <span class="toc-text">常见软件 :</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是开发"><span class="toc-number">1.3.</span> <span class="toc-text">什么是开发?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#人机交互"><span class="toc-number">2.</span> <span class="toc-text">人机交互</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#交换方式"><span class="toc-number">2.1.</span> <span class="toc-text">交换方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#计算机语言"><span class="toc-number">3.</span> <span class="toc-text">计算机语言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语言"><span class="toc-number">3.1.</span> <span class="toc-text">语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算机语言-1"><span class="toc-number">3.2.</span> <span class="toc-text">计算机语言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java语言"><span class="toc-number">4.</span> <span class="toc-text">Java语言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#特点"><span class="toc-number">4.1.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三大技术架构"><span class="toc-number">4.2.</span> <span class="toc-text">三大技术架构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JRE与JDK"><span class="toc-number">5.</span> <span class="toc-text">JRE与JDK</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见DOS命令与快捷键操作"><span class="toc-number">6.</span> <span class="toc-text">常见DOS命令与快捷键操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境变量"><span class="toc-number">7.</span> <span class="toc-text">环境变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设置Java环境变量"><span class="toc-number">7.1.</span> <span class="toc-text">设置Java环境变量</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            JDK环境搭建
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/2019/10/05/Introduction/dirsTest/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-05T07:44:06.000Z" itemprop="datePublished">2019-10-05</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/JDK-EnvironmentBuilding/">JDK,EnvironmentBuilding</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>在我基本掌握了hexo的最基础操作步骤之后,对自己学习的知识点作了一番梳理.
+java是我接触计算机编程正式开始学习的第一门语言,那么就先开始学习的第一步.
+搭建JDK环境,在这之前。先就计算机作了一个最基本的概叙</code></pre><a id="more"></a>
+<h2 id="计算机软件开发"><a href="#计算机软件开发" class="headerlink" title="计算机软件开发"></a>计算机软件开发</h2><h3 id="什么是软件"><a href="#什么是软件" class="headerlink" title="什么是软件?"></a>什么是软件?</h3><pre><code>一系列按照指定顺序组织的计算机数据(也就是信息--&gt;二进制)与指令(处理数据的方式)的集合</code></pre><h3 id="常见软件"><a href="#常见软件" class="headerlink" title="常见软件 :"></a>常见软件 :</h3><pre><code>系统软件 :
+    DOS(Disc Operate System)、Windows、Liux、Mac...
+    最早期是DOS后期出现了方便操作的图形化操作系统
+应用软件 :
+    扫雷、百度网盘、QQ...</code></pre><h3 id="什么是开发"><a href="#什么是开发" class="headerlink" title="什么是开发?"></a>什么是开发?</h3><pre><code>就是制作软件,将一系列数据与指令结合起来</code></pre><h2 id="人机交互"><a href="#人机交互" class="headerlink" title="人机交互"></a>人机交互</h2><pre><code>软件的出现实现了人与计算机之间更好的交互</code></pre><h3 id="交换方式"><a href="#交换方式" class="headerlink" title="交换方式"></a>交换方式</h3><pre><code>图形化界面(Graphical User Interface GUI)这是最常见的,简单直观、容易上手
+命令行方式(Command Line Interface CLI)这需要一个控制台,输入特定指令。比较麻烦,需要记住一些命令</code></pre><h2 id="计算机语言"><a href="#计算机语言" class="headerlink" title="计算机语言"></a>计算机语言</h2><h3 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h3><pre><code>是传递信息用于沟通的一种方式</code></pre><h3 id="计算机语言-1"><a href="#计算机语言-1" class="headerlink" title="计算机语言"></a>计算机语言</h3><pre><code>人与计算机进行信息交流的方式,计算机语言非常多,例如: C、C++、Java</code></pre><h2 id="Java语言"><a href="#Java语言" class="headerlink" title="Java语言"></a>Java语言</h2><pre><code>是SUN(Stanford University Network 斯坦福大学网络公司)1995年推出的高级编程语言</code></pre><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><pre><code>开源 : 是一种面向Internet的语言
+跨平台 : 简单易学、安全可靠、完全面向对象、与平台无关(由JVM保证)
+    原理 : 不同的平台安装对应的JVM,由JVM解析Java程序。</code></pre><h3 id="三大技术架构"><a href="#三大技术架构" class="headerlink" title="三大技术架构"></a>三大技术架构</h3><pre><code>J2EE(Java 2 Platform Enterprise Edition)企业版 : 为企业环境应用程序提供的方案
+J2SE(Java 2 Platform Standard Edition)标准版 : 为开发桌面以及商务应用程序提供的方案
+J2ME(Java 2 Platform Micro Edition)小型版 : 为开发电子消费产品与嵌入式提供的方案
+JDK5.0以后改名为(JAVAEE,JAVASE,JAVAME) 主要是JAVAEE,小型开发对于Android以及IOS有自己的开发软件</code></pre><h2 id="JRE与JDK"><a href="#JRE与JDK" class="headerlink" title="JRE与JDK"></a>JRE与JDK</h2><pre><code>JRE(Java Runtime Environment java运行时环境)
+    由JVM(Java Virtual Machine Java虚拟机)与程序运行的核心类库组成,要运行一个开发好的Java程序只需要JRE即可
+JDK(Java Development Kit java开发工具包)
+    由JRE与Java开发工具组成,开发工具 : 运行工具(java.exe),编译工具(javac.exe),打包工具(jar.exe),文档工具(javadoc.exe)...</code></pre><p>JDK下载 : <a href="https://www.oracle.com/" target="_blank" rel="noopener">www.oracle.com</a></p>
+<h2 id="常见DOS命令与快捷键操作"><a href="#常见DOS命令与快捷键操作" class="headerlink" title="常见DOS命令与快捷键操作"></a>常见DOS命令与快捷键操作</h2><pre><code>DOS命令 : 
+    打开DOS窗口 : win键或者点击任务栏的开始,在搜索框输入cmd
+    运行程序 : 以.exe后缀文件为例(直接到程序所在的目录键入程序名称即可),比如运行(java.exe)--&gt;(java)
+    盘符切换 : (盘符:) 例如 C:
+    列出当前目下的文件与文件夹 : (dir) 
+    创建目录 : (md 目录名) make directory
+    删除目录 : (rd 目录名) remove directory,被删除的目录下没有任何文件或文件夹,否则失败。回收站是没有目录的
+    进入指定目录 : (cd 目录名)
+    回退到上级目录 : (cd..)
+    回退到根目录 : (cd\) 也就是当前盘符路径
+    删除文件 : (del)    回收站是没有文件的
+    退出dos命令行 : (exit)
+    批量删除 : (del *.txt) 其中的*代表通配符,*.txt代表所有.txt文件。如果是所有文件--&gt;(*)
+    ...
+    帮助 : (help) 所有的命令信息,那么查找(cd)命令的详细信息(help cd) 一般来说系统中的帮助不是(help)就是(?)
+快捷键 :
+    全选    Ctrl+A
+    复制    Ctrl+C
+    粘贴    Ctrl+V
+    剪切    Ctrl+X
+    撤销    Ctrl+Z
+    保存    Ctrl+S</code></pre><h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><pre><code>执行一个应用程序,默认是要进入该程序所在的目录然后运行。
+但是也可以然它在任意位置都能运行,比如(notepad)Windows系统自带的记事本</code></pre><h3 id="设置Java环境变量"><a href="#设置Java环境变量" class="headerlink" title="设置Java环境变量"></a>设置Java环境变量</h3><pre><code>鼠标右键点击(我的电脑)--&gt;高级系统设置--&gt;环境变量--&gt;系统变量--&gt;变量名为Path
+在这列信息里面添加JDK的bin(binary)目录路径信息(绝对路径),例如 C:\Program Files\Java\jdk-9\bin
+这里要注意与其他信息用(;)隔开
+重新打开dos窗口,键入javac回车。如果以下信息，那么表示设置成功了</code></pre><p><img src="/images/Java/EnvironmentBuilding/javac.PNG" alt>;</p>
+<a href="/2019/10/05/Java/Introduction/EnvironmentBuilding/" title="hehe">hehe</a>
+
+        
+    </section>
+</article>
+
+
+
+<div class="comments">
+    <div id="comments"></div>
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+    new Gitalk({
+        clientID: "7fbe80427f54741e289f",
+        clientSecret: "f34ed5fd92e54c9000bd37ba951948cb939deff5",
+        repo: "liao1816391.github.io",
+        owner: "LaoJQ",
+        admin: ["LaoJQ"],
+        id: "2019/10/05/Introduction/dirsTest",
+        distractionFreeMode: true,
+        title: "JDK环境搭建",
+        body: "https://liao1816391.github.io.git/2019/10/05/Introduction/dirsTest/",
+        labels: ["JDK,EnvironmentBuilding"]
+    }).render('comments');
+    </script>
+</div>
+
+</div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+            
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+        </script>
+    
+
+</body>
+</html>

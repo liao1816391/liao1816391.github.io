@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+
+    <title>synchronized线程同步 | 寻找真实</title>
+    <meta name="author" content="LaoJQ">
+    <meta name="version" content="1.0.0">
+    <meta name="keywords" content>
+    <meta name="description" content="多线程同时执行的时候,如果没有设置同步。那么由于CPU操作的原子性假设某个共享成员被访问一次就自增一次或自减一次在作数据操作的时候,可能某几个线程拿到的是同一个值,这显然不是我们想要的为什么要同步Runnable首先回到模拟电影院售票的案例上,可参考Runnable接口,链接在上方执行相关操作会发现,打印的数据中会出现同票甚至可能出现负票首先就同票的问题作分析 : CPU的一次操作必须是原子的。也就是说这个操作不能被拆分        t = 1         thr...">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="寻找真实" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">寻找真实</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end">
+                <span class="nav-text">后端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Java">
+                <span class="nav-text">Java</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/atom.xml">
+                <span class="nav-text">订阅</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://liao1816391.github.io.git"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么要同步"><span class="toc-number">1.</span> <span class="toc-text">为什么要同步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#产生问题的场景"><span class="toc-number">2.</span> <span class="toc-text">产生问题的场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">3.</span> <span class="toc-text">解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#同步代码块"><span class="toc-number">3.1.</span> <span class="toc-text">同步代码块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#格式"><span class="toc-number">3.1.1.</span> <span class="toc-text">格式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同步的特点"><span class="toc-number">3.2.</span> <span class="toc-text">同步的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同步方法"><span class="toc-number">3.3.</span> <span class="toc-text">同步方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异常的情况"><span class="toc-number">3.4.</span> <span class="toc-text">异常的情况</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关习题"><span class="toc-number">4.</span> <span class="toc-text">相关习题</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            synchronized线程同步
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/2019/10/06/Java/Thread/Synchronized/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-06T15:08:44.000Z" itemprop="datePublished">2019-10-06</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Synchronized/">Synchronized</a>, <a class="article-tag-link" href="/tags/Thread/">Thread</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>多线程同时执行的时候,如果没有设置同步。那么由于CPU操作的原子性
+假设某个共享成员被访问一次就自增一次或自减一次
+在作数据操作的时候,可能某几个线程拿到的是同一个值,这显然不是我们想要的</code></pre><a id="more"></a>
+
+<h2 id="为什么要同步"><a href="#为什么要同步" class="headerlink" title="为什么要同步"></a>为什么要同步</h2><a href="/2019/10/06/Java/Thread/Runnable/" title="Runnable">Runnable</a>
+
+<pre><code>首先回到模拟电影院售票的案例上,可参考Runnable接口,链接在上方
+执行相关操作会发现,打印的数据中会出现同票甚至可能出现负票
+首先就同票的问题作分析 : 
+CPU的一次操作必须是原子的。也就是说这个操作不能被拆分
+        t = 1         thread1与thread2同时打印t++
+        由于t++ 的原理是 temp = t; t = t + 1; 返回temp
+情况一:    thread1                thread2                情况二:        thread1             thread2
+1:        temp = t;                                            temp = t;
+2:                            temp = t;                         t = t + 1;
+3:        t = t + 1;                                                                temp = t;
+4:                            t = t + 1;                        return temp;
+5:                            return temp;                                        t = t + 1;
+6:        return temp;                                                            return temp;    
+        故而打印的都是1                                        故而thread1打印1,thread2打印2
+其次是负票的情况,也是由于CPU操作原子性,最后有可能多个线程同时通过了判断
+但是打印的时候拿到的值却错开了,也就是靠近边界时都通过判断但是打印却发生了情况二这种情景</code></pre><h2 id="产生问题的场景"><a href="#产生问题的场景" class="headerlink" title="产生问题的场景"></a>产生问题的场景</h2><pre><code>那么哪些情况又会产生线程安全问题呢?
+可以从这些角度去考虑,首先必须是多线程环境,其次有共享数据(变量)
+然后是操作共享数据的语句(发生变化),语句越多出现安全问题的可能性越高
+总结    A.是否有多线程环境
+    B.是否有共享数据
+    C.是否有多条语句操作共享数据</code></pre><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="同步代码块"><a href="#同步代码块" class="headerlink" title="同步代码块"></a>同步代码块</h3><h4 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h4><pre><code>同步代码块能解决安全问题的主要原因在代码块参数对象上,这个对象也被称为同步锁
+但是多个存在安全问题的线程只能使用同一把锁,并且代码块的代码尽量少,且锁对象不能为空
+格式如下 : </code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span>(对象)&#123;</span><br><span class="line">	<span class="comment">//需要同步的代码;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>简单的案例 : </code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Runnable runnable = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> number = <span class="number">100</span>;</span><br><span class="line">    <span class="keyword">private</span> Object obj = <span class="keyword">new</span> Object();</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (obj) &#123;</span><br><span class="line">                <span class="keyword">if</span> (number &gt; <span class="number">0</span>)</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">" : "</span> + number--);</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">100</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">Thread thread1 = <span class="keyword">new</span> Thread(runnable, <span class="string">"业务员1"</span>);</span><br><span class="line">Thread thread2 = <span class="keyword">new</span> Thread(runnable, <span class="string">"业务员2"</span>);</span><br><span class="line">Thread thread3 = <span class="keyword">new</span> Thread(runnable, <span class="string">"业务员3"</span>);</span><br><span class="line">thread1.start();</span><br><span class="line">thread2.start();</span><br><span class="line">thread3.start();</span><br></pre></td></tr></table></figure>
+
+<pre><code>执行代码,可以发现即使是数字的顺序都是有序的了,这是因为同步代码块里面的代码只能有一个线程在执行
+具体结果如下 :</code></pre><p><img src="/images/Java/Thread/Synchronized_code.PNG" alt></p>
+<h3 id="同步的特点"><a href="#同步的特点" class="headerlink" title="同步的特点"></a>同步的特点</h3><pre><code>多个线程;多个线程使用的是同一个锁对象
+    好处 : 同步解决了多线程的安全问题
+    弊端 : 当线程相对多时,因为每个线程都会判断同步上的锁,这是很耗费资源的,降低程序的运行效率</code></pre><h3 id="同步方法"><a href="#同步方法" class="headerlink" title="同步方法"></a>同步方法</h3><pre><code>有些时候,一个方法的整个代码都需要加锁.这时候java提供了同步方法
+就是在方法上添加一个synchronized关键字(修饰符的位置任意),一般把它写到权限修饰符后面
+实例同步方法的锁对象是this,也就是当前对象本身
+静态(类)同步方法的锁对象是该类的字节码文件对象(Class文件对象)
+实例同步方法简单的案例 :</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">Runnable runnable = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> number = <span class="number">100</span>;</span><br><span class="line">    <span class="keyword">private</span> Object obj = <span class="keyword">new</span> Object();</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            x++;</span><br><span class="line">            <span class="keyword">if</span> (x % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (number &gt; <span class="number">0</span>)</span><br><span class="line">                        System.out.println(Thread.currentThread().getName() + <span class="string">" : "</span> + number--);</span><br><span class="line">                    <span class="keyword">else</span></span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                count();</span><br><span class="line">                <span class="keyword">if</span> (number &lt;= <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">100</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">count</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (number &gt; <span class="number">0</span>)</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">" : "</span> + number--);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">Thread thread1 = <span class="keyword">new</span> Thread(runnable, <span class="string">"业务员1"</span>);</span><br><span class="line">Thread thread2 = <span class="keyword">new</span> Thread(runnable, <span class="string">"业务员2"</span>);</span><br><span class="line">Thread thread3 = <span class="keyword">new</span> Thread(runnable, <span class="string">"业务员3"</span>);</span><br><span class="line">thread1.start();</span><br><span class="line">thread2.start();</span><br><span class="line">thread3.start();</span><br></pre></td></tr></table></figure>
+
+<pre><code>执行结果如下 :</code></pre><p><img src="/images/Java/Thread/Synchronized_method_this.PNG" alt></p>
+<pre><code>校验实例同步方法锁对象为this,将同步代码块锁对象修改为obj;可以发现出现同数字以及乱序
+执行结果如下:</code></pre><p><img src="/images/Java/Thread/Synchronized_method_obj.PNG" alt></p>
+<pre><code>由于匿名内部类不能使用静态属性,简单案例只需要在实例同步方法案例的基础上创建一个Runnable接口的实现类
+将匿名内部类的同步代码块的锁对象改为this.getClass()或者(类名.class)并将同步方法以及共享成员number改为静态
+执行结果如下 :</code></pre><p><img src="/images/Java/Thread/Synchronized_static_class.PNG" alt></p>
+<pre><code>校验实例同步方法锁对象为字节码文件,将同步代码块锁对象修改其他对象;可以发现同数字或乱序</code></pre><p><img src="/images/Java/Thread/Synchronized_static_this.PNG" alt></p>
+<h3 id="异常的情况"><a href="#异常的情况" class="headerlink" title="异常的情况"></a>异常的情况</h3><pre><code>如果在同步代码块中出现异常,那么会发生什么情况呢?是否会释放锁对象呢？
+下面是一个简单的测试案例 :</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Runnable ticket = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> ticket = <span class="number">100</span>;</span><br><span class="line">    <span class="keyword">private</span> Object lock = <span class="keyword">new</span> Object();</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (lock) &#123;</span><br><span class="line">                <span class="keyword">if</span> (ticket &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">"正在出售第"</span> + ticket + <span class="string">"张票!"</span>);</span><br><span class="line">                    <span class="keyword">if</span> (Thread.currentThread().getName().equals(<span class="string">"窗口1"</span>) &amp;&amp; ticket &lt; <span class="number">80</span>)</span><br><span class="line">                        System.out.println(<span class="number">10</span> / <span class="number">0</span>);</span><br><span class="line">                    ticket--;</span><br><span class="line">                &#125; <span class="keyword">else</span></span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">100</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">Thread thread1 = <span class="keyword">new</span> Thread(ticket,<span class="string">"窗口1"</span>);</span><br><span class="line">Thread thread2 = <span class="keyword">new</span> Thread(ticket,<span class="string">"窗口2"</span>);</span><br><span class="line">Thread thread3 = <span class="keyword">new</span> Thread(ticket,<span class="string">"窗口3"</span>);</span><br><span class="line">thread1.start();</span><br><span class="line">thread2.start();</span><br><span class="line">thread3.start();</span><br></pre></td></tr></table></figure>
+
+<pre><code>从执行结果来看,是会释放锁对象的。
+但是由于在票减少之前出现了异常,故而票打印了但是却没有减少.出现了一次同票
+执行结果如下 : </code></pre><p><img src="/images/Java/Thread/Synchronized_Exception.PNG" alt></p>
+<pre><code>修改代码,添加try-catch-finally结构,将同步代码中必须的操作放到finally中</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (ticket &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">"正在出售第"</span> + ticket + <span class="string">"张票!"</span>);</span><br><span class="line">        <span class="keyword">if</span> (Thread.currentThread().getName().equals(<span class="string">"窗口1"</span>) &amp;&amp; ticket &lt; <span class="number">80</span>)</span><br><span class="line">            System.out.println(<span class="number">10</span> / <span class="number">0</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (ArithmeticException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        <span class="keyword">break</span>;<span class="comment">//Thread.currentThread().interrupt();</span></span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        ticket--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>执行结果如下 :</code></pre><p><img src="/images/Java/Thread/Synchronized_Exception_try.PNG" alt></p>
+<pre><code>如果使用中断,会发生什么?
+在上述代码中,会一直抛出ArithmeticException与InterruptException并只有&quot;窗口一&quot;在执行
+由于中断是一种抛出异常的方式,而sleep方法预定这个中断异常对象是不会执行的
+而这两个异常对象一直存在于该线程的run方法内
+也就导致了&quot;窗口一&quot;没有等待,把同步后面的睡眠时间修改得尽量小或者为0,
+多次测试就会发现其他的线程也能执行,但是只要遇到&quot;窗口一&quot;就会抛出两个异常</code></pre><h2 id="相关习题"><a href="#相关习题" class="headerlink" title="相关习题"></a>相关习题</h2><a href="/2019/10/06/Java/Thread/Exercise/" title="线程练习">线程练习</a>
+        
+    </section>
+</article>
+
+
+
+<div class="comments">
+    <div id="comments"></div>
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+    new Gitalk({
+        clientID: "7fbe80427f54741e289f",
+        clientSecret: "f34ed5fd92e54c9000bd37ba951948cb939deff5",
+        repo: "liao1816391.github.io",
+        owner: "LaoJQ",
+        admin: ["LaoJQ"],
+        id: "2019/10/06/Java/Thread/Synchronized",
+        distractionFreeMode: true,
+        title: "synchronized线程同步",
+        body: "https://liao1816391.github.io.git/2019/10/06/Java/Thread/Synchronized/",
+        labels: ["Thread","Synchronized"]
+    }).render('comments');
+    </script>
+</div>
+
+</div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+            
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+        </script>
+    
+
+</body>
+</html>

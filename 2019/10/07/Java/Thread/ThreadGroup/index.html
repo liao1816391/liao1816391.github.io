@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+
+    <title>线程组 | 寻找真实</title>
+    <meta name="author" content="LaoJQ">
+    <meta name="version" content="1.0.0">
+    <meta name="keywords" content>
+    <meta name="description" content="当我们需要对一类线程做相同的操作时,不妨将这些线程当成集合来处理java为我们提供了线程组ThreadGroup类,13503079814构造方法12public ThreadGroup(String name);//构建一个新线程组,并为该线程组设置名称public ThreadGroup(ThreadGroup parent, String name)//构建一个先线程组,并传入父线程组获取1234public final String getName()//获取线程组名称p...">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="寻找真实" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">寻找真实</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end">
+                <span class="nav-text">后端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Java">
+                <span class="nav-text">Java</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/atom.xml">
+                <span class="nav-text">订阅</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://liao1816391.github.io.git"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#构造方法"><span class="toc-number">1.</span> <span class="toc-text">构造方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取"><span class="toc-number">2.</span> <span class="toc-text">获取</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            线程组
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/2019/10/07/Java/Thread/ThreadGroup/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-07T12:16:30.000Z" itemprop="datePublished">2019-10-07</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Thread/">Thread</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>当我们需要对一类线程做相同的操作时,不妨将这些线程当成集合来处理
+java为我们提供了线程组ThreadGroup类,13503079814</code></pre><a id="more"></a>
+
+<h2 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadGroup</span><span class="params">(String name)</span></span>;<span class="comment">//构建一个新线程组,并为该线程组设置名称</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadGroup</span><span class="params">(ThreadGroup parent, String name)</span><span class="comment">//构建一个先线程组,并传入父线程组</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> String <span class="title">getName</span><span class="params">()</span><span class="comment">//获取线程组名称</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> ThreadGroup <span class="title">getParent</span><span class="params">()</span><span class="comment">//获取当前线程组的父线程组</span></span></span><br><span class="line"><span class="function"><span class="comment">//返回此线程组的最高优先级。作为此线程组一部分的线程不能拥有比最高优先级更高的优先级。 </span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getMaxPriority</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+
+
+<pre><code>简单的测试案例 :</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">ThreadGroup fatherGroup = <span class="keyword">new</span> ThreadGroup(<span class="string">"父线程组"</span>);</span><br><span class="line">ThreadGroup childrenGroup = <span class="keyword">new</span> ThreadGroup(fatherGroup,<span class="string">"子线程组"</span>);</span><br><span class="line">Thread thread1 = <span class="keyword">new</span> Thread(<span class="string">"线程1"</span>);</span><br><span class="line">Thread thread2 = <span class="keyword">new</span> Thread(fatherGroup,<span class="string">"线程2"</span>);</span><br><span class="line">Thread thread3 = <span class="keyword">new</span> Thread(childrenGroup,<span class="string">"线程3"</span>);</span><br><span class="line">System.out.println(<span class="string">"main所在线程组 : "</span>+Thread.currentThread().getThreadGroup().getName());</span><br><span class="line">System.out.println(<span class="string">"thread1所在线程组 : "</span>+thread1.getThreadGroup().getName());</span><br><span class="line">System.out.println(<span class="string">"thread2所在线程组 : "</span>+thread2.getThreadGroup().getName());</span><br><span class="line">System.out.println(<span class="string">"thread3所在线程组 : "</span>+thread3.getThreadGroup().getName());</span><br><span class="line">System.out.println(<span class="string">"thread3所在线程组的父线程组 : "</span></span><br><span class="line">        +thread3.getThreadGroup().getParent().getName());</span><br><span class="line">thread2.setPriority(<span class="number">8</span>);</span><br><span class="line">System.out.println(<span class="string">"main线程组优先级 : "</span>+Thread.currentThread().getThreadGroup().getMaxPriority());</span><br><span class="line">System.out.println(<span class="string">"父线程组默认优先级 : "</span>+fatherGroup.getMaxPriority());</span><br><span class="line">System.out.println(<span class="string">"子线程组默认优先级 : "</span>+childrenGroup.getMaxPriority());</span><br><span class="line">fatherGroup.setMaxPriority(<span class="number">3</span>);</span><br><span class="line">System.out.println(<span class="string">"父线程组修改优先级 : "</span>+fatherGroup.getMaxPriority());</span><br><span class="line">System.out.println(<span class="string">"父线程组被修改后优先级 : "</span>+childrenGroup.getMaxPriority());</span><br><span class="line">Thread thread5 = <span class="keyword">new</span> Thread(childrenGroup,<span class="string">"线程5"</span>);</span><br><span class="line">System.out.println(thread2.getName()+<span class="string">" : "</span>+thread2.getPriority());</span><br><span class="line">System.out.println(thread3.getName()+<span class="string">" : "</span>+thread3.getPriority());</span><br><span class="line">System.out.println(thread5.getName()+<span class="string">" : "</span>+thread5.getPriority());</span><br></pre></td></tr></table></figure>
+
+<pre><code>执行代码可以得到结论
+    main线程以及新建线程的默认线程组是main线程组
+    线程组的优先级默认为10
+    修改父线程组的最大优先级,子线程组也随之修改
+    修改线程组最大优先级不影响内部线程的优先级
+    线程优先级不可超过其线程组,若超过则设置为线程组最大优先级
+        当然超过优先级访问依然抛异常
+    创建线程的时候,它的优先级&lt;=它的线程组最大优先级
+执行结果如下 :</code></pre><p><img src="/images/Java/Thread/ThreadGroup_get.PNG" alt></p>
+
+        
+    </section>
+</article>
+
+
+
+<div class="comments">
+    <div id="comments"></div>
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+    new Gitalk({
+        clientID: "7fbe80427f54741e289f",
+        clientSecret: "f34ed5fd92e54c9000bd37ba951948cb939deff5",
+        repo: "liao1816391.github.io",
+        owner: "LaoJQ",
+        admin: ["LaoJQ"],
+        id: "2019/10/07/Java/Thread/ThreadGroup",
+        distractionFreeMode: true,
+        title: "线程组",
+        body: "https://liao1816391.github.io.git/2019/10/07/Java/Thread/ThreadGroup/",
+        labels: ["Thread"]
+    }).render('comments');
+    </script>
+</div>
+
+</div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+            
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+        </script>
+    
+
+</body>
+</html>
