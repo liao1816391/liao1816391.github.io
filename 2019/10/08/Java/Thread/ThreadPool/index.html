@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+
+    <title>线程池 | 寻找真实</title>
+    <meta name="author" content="LaoJQ">
+    <meta name="version" content="1.0.0">
+    <meta name="keywords" content>
+    <meta name="description" content="程序启动一个新线程的成本是比较高的,因为涉及操作系统的交互.而使用线程池可以很好的提升性能尤其在程序中要创建大量生存期很短的线程时,更应该考虑线程池的使用创建线程池在意识到需要使用线程池提升效率以后,如何创建线程池呢?在JDK5版本,提供了一个Executors类来产生线程池,这是一个工厂类Executors类的常用方法创建线程池相关12345678910//创建一个线程池public static ExecutorService newCachedThreadPool()//指定...">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="寻找真实" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">寻找真实</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end">
+                <span class="nav-text">后端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Java">
+                <span class="nav-text">Java</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/atom.xml">
+                <span class="nav-text">订阅</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://liao1816391.github.io.git"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建线程池"><span class="toc-number">1.</span> <span class="toc-text">创建线程池</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Executors类的常用方法"><span class="toc-number">1.1.</span> <span class="toc-text">Executors类的常用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建线程池相关"><span class="toc-number">1.1.1.</span> <span class="toc-text">创建线程池相关</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ExecutorService接口"><span class="toc-number">1.2.</span> <span class="toc-text">ExecutorService接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#submit相关"><span class="toc-number">1.2.1.</span> <span class="toc-text">submit相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#shutdown相关"><span class="toc-number">1.2.2.</span> <span class="toc-text">shutdown相关</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            线程池
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/2019/10/08/Java/Thread/ThreadPool/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-08T11:52:14.000Z" itemprop="datePublished">2019-10-08</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Thread/">Thread</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>程序启动一个新线程的成本是比较高的,因为涉及操作系统的交互.而使用线程池可以很好的提升性能
+尤其在程序中要创建大量生存期很短的线程时,更应该考虑线程池的使用</code></pre><a id="more"></a>
+
+<h2 id="创建线程池"><a href="#创建线程池" class="headerlink" title="创建线程池"></a>创建线程池</h2><pre><code>在意识到需要使用线程池提升效率以后,如何创建线程池呢?
+在JDK5版本,提供了一个Executors类来产生线程池,这是一个工厂类</code></pre><h3 id="Executors类的常用方法"><a href="#Executors类的常用方法" class="headerlink" title="Executors类的常用方法"></a>Executors类的常用方法</h3><h4 id="创建线程池相关"><a href="#创建线程池相关" class="headerlink" title="创建线程池相关"></a>创建线程池相关</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建一个线程池</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newCachedThreadPool</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="comment">//指定创建线程池的数量</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newFixedThreadPool</span><span class="params">(<span class="keyword">int</span> nThreads)</span></span></span><br><span class="line"><span class="function"><span class="comment">//单个线程的线程池</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newSingleThreadExecutor</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newCachedThreadPool</span><span class="params">(ThreadFactory threadFactory)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newFixedThreadPool</span><span class="params">(<span class="keyword">int</span> nThreads, ThreadFactory threadFactory)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newSingleThreadExecutor</span><span class="params">(ThreadFactory threadFactory)</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ExecutorService接口"><a href="#ExecutorService接口" class="headerlink" title="ExecutorService接口"></a>ExecutorService接口</h3><pre><code>这是一个线程池对象的接口,其中提供了线程池的操作方法</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Future&lt;?&gt; submit(Runnable task)<span class="comment">//提交一个Runnable任务用于执行</span></span><br><span class="line">&lt;T&gt; <span class="function">Future&lt;T&gt; <span class="title">submit</span><span class="params">(Runnable task, T result)</span></span></span><br><span class="line"><span class="function">&lt;T&gt; Future&lt;T&gt; <span class="title">submit</span><span class="params">(Callable&lt;T&gt; task)</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shutdown</span><span class="params">()</span><span class="comment">//执行以前提交的任务,但不会接受新任务</span></span></span><br><span class="line"><span class="function">List&lt;Runnable&gt; <span class="title">shutdownNow</span><span class="params">()</span><span class="comment">//直接停止所有任务,返回还未开始的任务集合</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isShutdown</span><span class="params">()</span><span class="comment">//线程池是否关闭</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isTerminated</span><span class="params">()</span><span class="comment">//关闭后任务是否都以完成</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="submit相关"><a href="#submit相关" class="headerlink" title="submit相关"></a>submit相关</h4><pre><code>首先是测试使用newCachedThreadPool()创建线程池,测试默认线程池数量
+简单的案例 ：</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Runnable runnable1 = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i =<span class="number">0</span>;i&lt;<span class="number">10</span>;i++) &#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">" "</span> + i);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">100000</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">ExecutorService threadPool1 = Executors.newCachedThreadPool();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">100000</span>;i++)</span><br><span class="line">    threadPool1.submit(runnable1);</span><br></pre></td></tr></table></figure>
+
+<pre><code>结果很不理想,并未测试出默认线程池数量,因为再往上加估计要爆内存了
+执行结果如下 : </code></pre><p><img src="/images/Java/Thread/Thread_Pool_defualtSize_run.PNG" alt></p>
+<pre><code>终止执行的情况如下,电脑内存16G...10万都撑不住....</code></pre><p><img src="/images/Java/Thread/Thread_Pool_defualtSize.PNG" alt></p>
+<pre><code>接下来是创建指定线程数量的线程池,修改代码如下 :</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//匿名内部类睡眠时间修改为100</span></span><br><span class="line">ExecutorService threadPool2 = Executors.newFixedThreadPool(<span class="number">2</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;<span class="number">5</span>;i++)</span><br><span class="line">   threadPool2.submit(runnable1);</span><br></pre></td></tr></table></figure>
+
+<pre><code>执行代码可以发现其只有两个线程,而且当所有线程全执行完以后程序也不会停止
+执行结果如下 :</code></pre><p><img src="/images/Java/Thread/Thread_Pool_Fixed.PNG" alt></p>
+<pre><code>使用newSingleThreadExecutor()创建单个线程的线程池
+执行结果如下 :</code></pre><p><img src="/images/Java/Thread/Thread_Pool_Single.PNG" alt></p>
+<h4 id="shutdown相关"><a href="#shutdown相关" class="headerlink" title="shutdown相关"></a>shutdown相关</h4><pre><code>我们对shutdown相关的方法进行测试
+测试代码如下 :</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">Runnable runnable1 = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="keyword">private</span> String name = <span class="string">"拾荒者"</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i =<span class="number">0</span>;i&lt;<span class="number">3</span>;i++) &#123;</span><br><span class="line">            System.out.println(<span class="keyword">this</span> + <span class="string">" "</span>+ name + i);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">100</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> Thread.currentThread().getName();&#125;</span><br><span class="line">&#125;;</span><br><span class="line">ExecutorService threadPool1 = Executors.newCachedThreadPool();</span><br><span class="line">ExecutorService threadPool2 = Executors.newFixedThreadPool(<span class="number">2</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;<span class="number">5</span>;i++)</span><br><span class="line">    threadPool2.submit(runnable1);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    Thread.sleep(<span class="number">200</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line">threadPool2.shutdown();</span><br><span class="line"><span class="comment">//        List&lt;Runnable&gt; list = threadPool2.shutdownNow();</span></span><br><span class="line">System.out.println(threadPool2.isShutdown());</span><br><span class="line">System.out.println(threadPool2.isTerminated());</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"><span class="comment">//	  Thread.sleep(2);</span></span><br><span class="line"><span class="comment">//    System.out.println(threadPool2.isTerminated());</span></span><br><span class="line">    Thread.sleep(<span class="number">1010</span>);</span><br><span class="line">    threadPool2.submit(runnable1);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(threadPool2.isTerminated());</span><br><span class="line"><span class="comment">/*for (Runnable r :</span></span><br><span class="line"><span class="comment">        list) &#123;</span></span><br><span class="line"><span class="comment">    System.out.println(r);</span></span><br><span class="line"><span class="comment">    threadPool1.submit(r);</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>首先执行shutdown方法,可以发现
+    线程池会将之前提交的线程执行完毕
+    shutdown以后线程池就处于停止状态isShutdown()返回为true
+    isTerminated(结束)在线程运行完毕之前为false,运行完为true
+    停止之后不能在提交(执行)线程,否则抛RejectedExecutorException 拒绝执行异常
+        RejectedExecutorException属于运行时异常
+执行结果如下 :</code></pre><p><img src="/images/Java/Thread/Thread_Pool_shutdown.PNG" alt></p>
+<pre><code>然后执行shutdownNow方法以及相关代码,可以发现
+    线程池在该方法执行时直接停止所有线程操作
+        故而抛出了两个InterruptException中断异常
+        且被直接停止的线程不会被返回
+    未执行的线程会被返回,以List集合形式
+    而isTerminated结束状态除了被停止的瞬间,其余时刻就为true
+    停止之后不能执行线程,一个道理
+    返回的未执行对象和原对象大致相同
+        返回的是FutureTask类型,可以继续运行这些未执行的线程
+    执行结果如下 :</code></pre><p><img src="/images/Java/Thread/Thread_Pool_shutdownNow1.PNG" alt><br><img src="/images/Java/Thread/Thread_Pool_shutdownNow2.PNG" alt></p>
+
+        
+    </section>
+</article>
+
+
+
+<div class="comments">
+    <div id="comments"></div>
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+    new Gitalk({
+        clientID: "7fbe80427f54741e289f",
+        clientSecret: "f34ed5fd92e54c9000bd37ba951948cb939deff5",
+        repo: "liao1816391.github.io",
+        owner: "LaoJQ",
+        admin: ["LaoJQ"],
+        id: "2019/10/08/Java/Thread/ThreadPool",
+        distractionFreeMode: true,
+        title: "线程池",
+        body: "https://liao1816391.github.io.git/2019/10/08/Java/Thread/ThreadPool/",
+        labels: ["Thread"]
+    }).render('comments');
+    </script>
+</div>
+
+</div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+            
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+        </script>
+    
+
+</body>
+</html>
