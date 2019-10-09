@@ -139,6 +139,69 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2019/10/09/Java/Thread/Callable/">Callable接口</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-09T10:50:58.000Z" itemprop="datePublished">2019-10-09</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Callable/">Callable</a>, <a class="article-tag-link" href="/tags/Thread/">Thread</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>Callable接口类似于Runnable,两者都是为那些其实例可能被另一个线程执行的类设计的。
+但是 Runnable 不会返回结果，并且无法抛出经过检查的异常。
+如果想在线程执行完毕之后获取一个结果,那么Callable接口是一个选择
+与Runnable不同,这个接口开始于JDK5</code></pre><h2 id="泛型类型"><a href="#泛型类型" class="headerlink" title="泛型类型"></a>泛型类型</h2><pre><code>通过API观察这个接口可以发现,该接口后带了一个泛型
+这个泛型指定的是返回值的类型</code></pre><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">V <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception<span class="comment">//计算结果,如果无法计算则抛出异常</span></span></span><br></pre></td></tr></table></figure>
+
+<pre><code>由于版本靠后,Thread类没有关于它的构造方法.
+但是ExecutorService的submit方法有这个类型
+以下是简单的案例 :</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    ExecutorService pool = Executors.newFixedThreadPool(<span class="number">2</span>);</span><br><span class="line">    Future&lt;Integer&gt;[] futures = <span class="keyword">new</span> Future[<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">2</span>;i++)</span><br><span class="line">        futures[i] = pool.submit(<span class="keyword">new</span> MyCallable((i+<span class="number">1</span>)*<span class="number">100</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;futures.length;i++) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Integer result = futures[i].get();</span><br><span class="line">            System.out.println(result);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException | ExecutionException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCallable</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">Integer</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> number;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyCallable</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyCallable</span><span class="params">(<span class="keyword">int</span> number)</span></span>&#123;<span class="keyword">this</span>.number = number;&#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= number;i++)&#123;</span><br><span class="line">            sum += i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>由于返回的结果是Future接口类型,详情参见下一节
+执行结果如下,可以看出得到了返回值</code></pre><p><img src="/images/Java/Thread/Thread_Callable.PNG" alt></p>
+<h2 id="Future接口"><a href="#Future接口" class="headerlink" title="Future接口"></a>Future接口</h2><h3 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">cancel</span><span class="params">(<span class="keyword">boolean</span> mayInterruptIfRunning)</span><span class="comment">//取消此任务的执行</span></span></span><br><span class="line"><span class="function">V <span class="title">get</span><span class="params">()</span><span class="keyword">throws</span> InterruptedException, ExecutionException<span class="comment">//等待计算完成并获取结果</span></span></span><br><span class="line"><span class="function">V <span class="title">get</span><span class="params">(<span class="keyword">long</span> timeout,TimeUnit unit)</span><span class="comment">//设置计算完成的等待时间,超过报超时异常</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> InterruptedException,</span></span><br><span class="line"><span class="function">             ExecutionException,</span></span><br><span class="line"><span class="function">             TimeoutException</span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isCancelled</span><span class="params">()</span><span class="comment">//在任务完成前取消,返回true</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isDone</span><span class="params">()</span><span class="comment">//如果任务完成,返回true</span></span></span><br></pre></td></tr></table></figure>
+
+<pre><code>简单的测试案例 :</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ExecutorService pool = Executors.newFixedThreadPool(<span class="number">2</span>);</span><br><span class="line">        Futur9e&lt;Integer&gt; future = pool.submit(<span class="keyword">new</span> MyCallable(<span class="number">10</span>));</span><br><span class="line"><span class="comment">//        future.cancel(true);</span></span><br><span class="line">        <span class="comment">/*try &#123;</span></span><br><span class="line"><span class="comment">            System.out.println(future.get(1000,TimeUnit.MILLISECONDS));</span></span><br><span class="line"><span class="comment">        &#125; catch (Exception e) &#123;</span></span><br><span class="line"><span class="comment">            e.printStackTrace();</span></span><br><span class="line"><span class="comment">        &#125;*/</span></span><br><span class="line">        System.out.println(future.isCancelled());</span><br><span class="line">        System.out.println(future.isDone());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCallable</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">Integer</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> number;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyCallable</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyCallable</span><span class="params">(<span class="keyword">int</span> number)</span></span>&#123;<span class="keyword">this</span>.number = number;&#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= number;i++)&#123;</span><br><span class="line">            sum += i;</span><br><span class="line">            Thread.sleep(<span class="number">100</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>首先是直接测试两个判断,返回的都是false
+由于未取消任务,第一个false;由于main执行到isDone线程未执行结束,第二个false;
+以下是执行结果 :</code></pre><p><img src="/images/Java/Thread/Thread_Callable_judge.PNG" alt></p>
+<pre><code>打开指定1000ms以内获取执行结果,此时若完成了任务,isDone为true
+我这里得到了结果,执行结果如下 :</code></pre><p><img src="/images/Java/Thread/Thread_Callable_get1.PNG" alt></p>
+<pre><code>设置超时时间变小,会得到超时的异常。但是异常不属于取消任务,第一个仍为false
+我这里设置的是995ms,其实有个问题,那就是执行应该使用1000ms 为什么到995才异常
+但是异常结束也算是完成,第二个为true
+执行结果如下 :</code></pre><p><img src="/images/Java/Thread/Thread_Callable_get2.PNG" alt></p>
+<pre><code>最后将cancel方法打开,不管设置true还是false;get方法都会异常
+都会抛出CancellationException撤销异常
+执行结果如下 :</code></pre><p><img src="/images/Java/Thread/Thread_Callable_cancellation.PNG" alt></p>
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2019/10/08/Java/Thread/ThreadPool/">线程池</a>
         </h1>
         
@@ -516,50 +579,6 @@ Runnable接口有效的解决了这些问题</code></pre>
         
         <p class="article-more-link">
             <a href="/2019/10/06/Java/Thread/Descripton/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/10/05/Algorithm/Sort/quickSort/">快速排序(quickSort)</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="https://liao1816391.github.io.git/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-10-05T14:49:32.000Z" itemprop="datePublished">2019-10-05</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/Sort/">Sort</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="快速排序思想"><a href="#快速排序思想" class="headerlink" title="快速排序思想"></a>快速排序思想</h2><pre><code>取序列中的第一个元素,并将它移动到它应该处在的位置上
-并且它前面的元素都小于它,后面的元素都大于它
-之后再对前后两部分进行相同逻辑的递归,整个数组就排好序了</code></pre>
-        
-        <p class="article-more-link">
-            <a href="/2019/10/05/Algorithm/Sort/quickSort/#more">
                 <span class="vm">阅读更多</span>
                 <i class="icon-arrow-double-right vm"></i>    
             </a>
