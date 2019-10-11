@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+
+    <title>Timer定时器 | 寻找真实</title>
+    <meta name="author" content="LaoJQ">
+    <meta name="version" content="1.0.0">
+    <meta name="keywords" content>
+    <meta name="description" content="定时器是一个应用十分广泛的线程工具,可用于调度多个任务以后台线程的方式执行在Java中采用Timer类与TimerTask类定义调度的功能Timer类源于JDK3,TimerTask源于JDK3Timer(定时)构造方法1234public Timer()public Timer(boolean isDaemon)//设置为守护线程public Timer(String name)//设置名称public Timer(String name, boolean isDaemon)...">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="寻找真实" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">寻找真实</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end">
+                <span class="nav-text">后端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Java">
+                <span class="nav-text">Java</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Design">
+                <span class="nav-text">Design</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Algorithm">
+                <span class="nav-text">算法</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/atom.xml">
+                <span class="nav-text">订阅</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://liao1816391.github.io.git"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Timer-定时"><span class="toc-number">1.</span> <span class="toc-text">Timer(定时)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#构造方法"><span class="toc-number">1.1.</span> <span class="toc-text">构造方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#成员方法"><span class="toc-number">1.2.</span> <span class="toc-text">成员方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TimerTask-任务"><span class="toc-number">2.</span> <span class="toc-text">TimerTask(任务)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#构造方法-1"><span class="toc-number">2.1.</span> <span class="toc-text">构造方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#成员方法-1"><span class="toc-number">2.2.</span> <span class="toc-text">成员方法</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            Timer定时器
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/2019/10/10/Java/Thread/Timer/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-10T12:26:10.000Z" itemprop="datePublished">2019-10-10</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Thread/">Thread</a>, <a class="article-tag-link" href="/tags/Timer/">Timer</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>定时器是一个应用十分广泛的线程工具,可用于调度多个任务以后台线程的方式执行
+在Java中采用Timer类与TimerTask类定义调度的功能
+Timer类源于JDK3,TimerTask源于JDK3</code></pre><a id="more"></a>
+
+<h2 id="Timer-定时"><a href="#Timer-定时" class="headerlink" title="Timer(定时)"></a>Timer(定时)</h2><h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Timer</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Timer</span><span class="params">(<span class="keyword">boolean</span> isDaemon)</span><span class="comment">//设置为守护线程</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Timer</span><span class="params">(String name)</span><span class="comment">//设置名称</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Timer</span><span class="params">(String name, <span class="keyword">boolean</span> isDaemon)</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="成员方法"><a href="#成员方法" class="headerlink" title="成员方法"></a>成员方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cancel</span><span class="params">()</span><span class="comment">//终止此计时器,但不影响正在执行的任务</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">purge</span><span class="params">()</span><span class="comment">//从任务队列移除所有以取消的任务</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">//安排的任务以指定的固定延迟执行</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">schedule</span><span class="params">(TimerTask task, Date time)</span><span class="comment">//安排指定时间开始执行的任务</span></span></span><br><span class="line"><span class="function"><span class="comment">//从指定时间开始以指定频率运行</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">schedule</span><span class="params">(TimerTask task, Date firstTime, <span class="keyword">long</span> period)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">schedule</span><span class="params">(TimerTask task, <span class="keyword">long</span> delay)</span><span class="comment">//任务以指定频率运行</span></span></span><br><span class="line"><span class="function"><span class="comment">//在延迟时间过后以指定频率执行;delay延迟时间,period运行频率</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">schedule</span><span class="params">(TimerTask task,<span class="keyword">long</span> delay, <span class="keyword">long</span> period)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">//安排的任务以指定的固定速率执行</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">scheduleAtFixedRate</span><span class="params">(TimerTask task,<span class="keyword">long</span> delay, <span class="keyword">long</span> period)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">scheduleAtFixedRate</span><span class="params">(TimerTask task, Date firstTime,<span class="keyword">long</span> period)</span></span></span><br></pre></td></tr></table></figure>
+
+<pre><code>固定延迟与固定速率有何区别?那就是延迟的计算方式不同
+查看源码,固定延迟是-period而固定速率是+period
+延迟使用currentTime-period速率使用Executor+period
+这里和队列有关...,详细内容以后再添加。</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="TimerTask-任务"><a href="#TimerTask-任务" class="headerlink" title="TimerTask(任务)"></a>TimerTask(任务)</h2><pre><code>首先这个一个抽象类</code></pre><h3 id="构造方法-1"><a href="#构造方法-1" class="headerlink" title="构造方法"></a>构造方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="title">TimerTask</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="成员方法-1"><a href="#成员方法-1" class="headerlink" title="成员方法"></a>成员方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">cancel</span><span class="params">()</span><span class="comment">//撤销计时器的任务,可反复调用;第二次以后无效</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">scheduledExecutionTime</span><span class="params">()</span><span class="comment">//任务的最近预定执行时间</span></span></span><br></pre></td></tr></table></figure>
+
+<pre><code>接下来是对两者结合的测试,单独的测试如下
+可以看到,线程结束以后,仍然会把当前任务执行完
+以下是简单的案例 :</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Timer timer = <span class="keyword">new</span> Timer();</span><br><span class="line">        MyTask task = <span class="keyword">new</span> MyTask(<span class="string">"任务1"</span>,<span class="number">2000</span>);</span><br><span class="line">        System.out.println(<span class="keyword">new</span> Date());</span><br><span class="line">        timer.schedule(task,<span class="number">4000</span>,<span class="number">3000</span>);</span><br><span class="line"><span class="comment">//        timer.scheduleAtFixedRate(task,1000,3000);</span></span><br><span class="line">        System.out.println(<span class="keyword">new</span> Date(task.scheduledExecutionTime()));</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">10050</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(task.cancel());</span><br><span class="line">        System.out.println(<span class="string">"10秒结束了"</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">5000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        timer.cancel();</span><br><span class="line">    &#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyTask</span> <span class="keyword">extends</span> <span class="title">TimerTask</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> sleep;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyTask</span><span class="params">(String name,<span class="keyword">int</span> sleep)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.sleep = sleep;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(sleep);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread().getName()</span><br><span class="line">                +<span class="string">" "</span>+ <span class="keyword">this</span> +<span class="string">" 蹦瞎卡拉卡  "</span>+<span class="keyword">new</span> Date());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> name;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>从执行结果来看,首先为什么最近的预定执行时间是1s以后
+查看源码可以知道,计算最近执行时间的方式为下一次执行时间-间隔
+那么延迟时间4s-3s固定延迟得1s,但是第一秒是没开始程序的
+    这里要注意</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">scheduleAtFixedRate</span><span class="params">(TimerTask task, <span class="keyword">long</span> delay, <span class="keyword">long</span> period)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (delay &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Negative delay."</span>);</span><br><span class="line">    <span class="keyword">if</span> (period &lt;= <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Non-positive period."</span>);</span><br><span class="line">    sched(task, System.currentTimeMillis()+delay, period);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">schedule</span><span class="params">(TimerTask task, <span class="keyword">long</span> delay, <span class="keyword">long</span> period)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (delay &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Negative delay."</span>);</span><br><span class="line">    <span class="keyword">if</span> (period &lt;= <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Non-positive period."</span>);</span><br><span class="line">    sched(task, System.currentTimeMillis()+delay, -period);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">scheduledExecutionTime</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span>(lock) &#123;</span><br><span class="line">        <span class="keyword">return</span> (period &lt; <span class="number">0</span> ? nextExecutionTime + period</span><br><span class="line">                           : nextExecutionTime - period);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>然后,在四秒的延迟后.开始任务,并睡眠两秒打印第一句话
+    故而六秒后有打印,然后等待延迟完毕继续下一次任务
+在10秒50ms的时候撤销了任务,但是由于此时已经又开启了任务
+    故而要等开启的这一次执行完,但是后面就不执行了
+使用定时器的撤销任务,正式撤销定时器.程序就结束了
+    不撤销则等待下一个任务,main线程不会关闭
+执行结果如下 :</code></pre><p><img src="/images/Java/Thread/Thread_Timer_one.PNG" alt></p>
+<pre><code>如果延迟时间小于实际执行需要的时间会怎么样呢?
+    那么会等执行完再执行下一次任务
+修改传入的睡眠时间为4s,结果如下 :</code></pre><p><img src="/images/Java/Thread/Thread_Timer_timeover.PNG" alt></p>
+<pre><code>同时执行两个任务,执行从结果来看规律如下,每次只会执行一个任务
+当延时结束以后,执行下一个要执行的任务,交替执行
+main方法修改代码如下 :</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Timer timer = <span class="keyword">new</span> Timer();</span><br><span class="line">MyTask task = <span class="keyword">new</span> MyTask(<span class="string">"任务1"</span>,<span class="number">2000</span>);</span><br><span class="line">MyTask task2 = <span class="keyword">new</span> MyTask(<span class="string">"任务2"</span>,<span class="number">1000</span>);</span><br><span class="line">System.out.println(<span class="keyword">new</span> Date());</span><br><span class="line">timer.schedule(task,<span class="number">4000</span>,<span class="number">3000</span>);</span><br><span class="line">timer.schedule(task2,<span class="number">2000</span>,<span class="number">2000</span>);</span><br><span class="line"><span class="comment">//        timer.scheduleAtFixedRate(task,1000,3000);</span></span><br><span class="line">System.out.println(<span class="keyword">new</span> Date(task.scheduledExecutionTime()));</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    Thread.sleep(<span class="number">15000</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(task.cancel());</span><br><span class="line"></span><br><span class="line">System.out.println(<span class="string">"15秒结束了"</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    Thread.sleep(<span class="number">5000</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line">timer.cancel();</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>执行结果如下 :</code></pre><p><img src="/images/Java/Thread/Thread_Timer_two.PNG" alt></p>
+
+        
+    </section>
+</article>
+
+
+
+<div class="comments">
+    <div id="comments"></div>
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+    new Gitalk({
+        clientID: "7fbe80427f54741e289f",
+        clientSecret: "f34ed5fd92e54c9000bd37ba951948cb939deff5",
+        repo: "liao1816391.github.io",
+        owner: "LaoJQ",
+        admin: ["LaoJQ"],
+        id: "2019/10/10/Java/Thread/Timer",
+        distractionFreeMode: true,
+        title: "Timer定时器",
+        body: "https://liao1816391.github.io.git/2019/10/10/Java/Thread/Timer/",
+        labels: ["Thread","Timer"]
+    }).render('comments');
+    </script>
+</div>
+
+</div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+            
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+        </script>
+    
+
+</body>
+</html>

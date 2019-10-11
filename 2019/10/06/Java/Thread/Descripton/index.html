@@ -53,6 +53,14 @@
                 <span class="nav-text">Java</span>
             </a>
         
+            <a class="nav-item" href="/categories/Design">
+                <span class="nav-text">Design</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Algorithm">
+                <span class="nav-text">算法</span>
+            </a>
+        
             <a class="nav-item" href="/tags">
                 <span class="nav-text">标签</span>
             </a>
@@ -148,9 +156,10 @@ Java是不能直接调用系统功能的,故而无法直接实现多线程程序
 由C/C++调用系统功能创建进程,java再调用这样的东西,然后提供一些类供我们使用就可以实现</code></pre><h2 id="实现多线程的方式"><a href="#实现多线程的方式" class="headerlink" title="实现多线程的方式"></a>实现多线程的方式</h2><pre><code>有两种常用的方式:
 一、继承Thread类并重写run方法,然后创建实例并启动</code></pre><a href="/2019/10/06/Java/Thread/Thread/" title="Thread">Thread</a>
 
-<pre><code>二、实现Runnable接口并重写run方法</code></pre>{% post_link Java/Thread/Runnable Runnable %}
+<p>二、实现Runnable接口并重写run方法</p>
+<a href="/2019/10/06/Java/Thread/Runnable/" title="Runnable">Runnable</a>
 
-<pre><code>三、使用Callable&lt;V&gt;接口</code></pre><a href="/2019/10/09/Java/Thread/Callable/" title="Callable">Callable</a>
+<pre><code>三、使用Callable&lt;V&gt;接口</code></pre>{% post_link Java/Thread/Callable Callable %}
 
 <h2 id="线程调度"><a href="#线程调度" class="headerlink" title="线程调度"></a>线程调度</h2><pre><code>一个CPU在某一个时刻只能执行一条指令，线程只有得到 CPU时间片，也就是使用权，才可以执行指令。
 分时调度模型 : 所有线程轮流使用CPU使用权,平均分配线程占用CPU的时间片

@@ -53,6 +53,14 @@
                 <span class="nav-text">Java</span>
             </a>
         
+            <a class="nav-item" href="/categories/Design">
+                <span class="nav-text">Design</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Algorithm">
+                <span class="nav-text">算法</span>
+            </a>
+        
             <a class="nav-item" href="/tags">
                 <span class="nav-text">标签</span>
             </a>
@@ -139,6 +147,138 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2019/10/11/Design/Description/">设计模式概叙</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-11T13:50:14.000Z" itemprop="datePublished">2019-10-11</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Design/">Design</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>设计模式不是一直方法或技术,而是一种思想
+学习设计模式就是要建立面向对象思想,尽可能面向接口编程
+提供程序的复用性,低内聚、高耦合</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/11/Design/Description/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/11/Design/Principle/Principle/">面向对象开发原则</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-11T12:40:32.000Z" itemprop="datePublished">2019-10-11</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Principle/">Principle</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>要想使用好OOP(Object Oriented Programming)
+那么了解这几个基本设计原则是很重要的(前辈们的经验)
+在实际开发中能大大提升开发效率</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/11/Design/Principle/Principle/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/10/Java/Thread/Timer/">Timer定时器</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-10T12:26:10.000Z" itemprop="datePublished">2019-10-10</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Thread/">Thread</a>, <a class="article-tag-link" href="/tags/Timer/">Timer</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>定时器是一个应用十分广泛的线程工具,可用于调度多个任务以后台线程的方式执行
+在Java中采用Timer类与TimerTask类定义调度的功能
+Timer类源于JDK3,TimerTask源于JDK3</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/10/Java/Thread/Timer/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2019/10/09/Java/Thread/Callable/">Callable接口</a>
         </h1>
         
@@ -165,33 +305,15 @@
         <pre><code>Callable接口类似于Runnable,两者都是为那些其实例可能被另一个线程执行的类设计的。
 但是 Runnable 不会返回结果，并且无法抛出经过检查的异常。
 如果想在线程执行完毕之后获取一个结果,那么Callable接口是一个选择
-与Runnable不同,这个接口开始于JDK5</code></pre><h2 id="泛型类型"><a href="#泛型类型" class="headerlink" title="泛型类型"></a>泛型类型</h2><pre><code>通过API观察这个接口可以发现,该接口后带了一个泛型
-这个泛型指定的是返回值的类型</code></pre><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">V <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception<span class="comment">//计算结果,如果无法计算则抛出异常</span></span></span><br></pre></td></tr></table></figure>
-
-<pre><code>由于版本靠后,Thread类没有关于它的构造方法.
-但是ExecutorService的submit方法有这个类型
-以下是简单的案例 :</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    ExecutorService pool = Executors.newFixedThreadPool(<span class="number">2</span>);</span><br><span class="line">    Future&lt;Integer&gt;[] futures = <span class="keyword">new</span> Future[<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">2</span>;i++)</span><br><span class="line">        futures[i] = pool.submit(<span class="keyword">new</span> MyCallable((i+<span class="number">1</span>)*<span class="number">100</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;futures.length;i++) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Integer result = futures[i].get();</span><br><span class="line">            System.out.println(result);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException | ExecutionException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCallable</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">Integer</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> number;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyCallable</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyCallable</span><span class="params">(<span class="keyword">int</span> number)</span></span>&#123;<span class="keyword">this</span>.number = number;&#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= number;i++)&#123;</span><br><span class="line">            sum += i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<pre><code>由于返回的结果是Future接口类型,详情参见下一节
-执行结果如下,可以看出得到了返回值</code></pre><p><img src="/images/Java/Thread/Thread_Callable.PNG" alt></p>
-<h2 id="Future接口"><a href="#Future接口" class="headerlink" title="Future接口"></a>Future接口</h2><h3 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">cancel</span><span class="params">(<span class="keyword">boolean</span> mayInterruptIfRunning)</span><span class="comment">//取消此任务的执行</span></span></span><br><span class="line"><span class="function">V <span class="title">get</span><span class="params">()</span><span class="keyword">throws</span> InterruptedException, ExecutionException<span class="comment">//等待计算完成并获取结果</span></span></span><br><span class="line"><span class="function">V <span class="title">get</span><span class="params">(<span class="keyword">long</span> timeout,TimeUnit unit)</span><span class="comment">//设置计算完成的等待时间,超过报超时异常</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> InterruptedException,</span></span><br><span class="line"><span class="function">             ExecutionException,</span></span><br><span class="line"><span class="function">             TimeoutException</span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isCancelled</span><span class="params">()</span><span class="comment">//在任务完成前取消,返回true</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isDone</span><span class="params">()</span><span class="comment">//如果任务完成,返回true</span></span></span><br></pre></td></tr></table></figure>
-
-<pre><code>简单的测试案例 :</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ExecutorService pool = Executors.newFixedThreadPool(<span class="number">2</span>);</span><br><span class="line">        Futur9e&lt;Integer&gt; future = pool.submit(<span class="keyword">new</span> MyCallable(<span class="number">10</span>));</span><br><span class="line"><span class="comment">//        future.cancel(true);</span></span><br><span class="line">        <span class="comment">/*try &#123;</span></span><br><span class="line"><span class="comment">            System.out.println(future.get(1000,TimeUnit.MILLISECONDS));</span></span><br><span class="line"><span class="comment">        &#125; catch (Exception e) &#123;</span></span><br><span class="line"><span class="comment">            e.printStackTrace();</span></span><br><span class="line"><span class="comment">        &#125;*/</span></span><br><span class="line">        System.out.println(future.isCancelled());</span><br><span class="line">        System.out.println(future.isDone());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCallable</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">Integer</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> number;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyCallable</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyCallable</span><span class="params">(<span class="keyword">int</span> number)</span></span>&#123;<span class="keyword">this</span>.number = number;&#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= number;i++)&#123;</span><br><span class="line">            sum += i;</span><br><span class="line">            Thread.sleep(<span class="number">100</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<pre><code>首先是直接测试两个判断,返回的都是false
-由于未取消任务,第一个false;由于main执行到isDone线程未执行结束,第二个false;
-以下是执行结果 :</code></pre><p><img src="/images/Java/Thread/Thread_Callable_judge.PNG" alt></p>
-<pre><code>打开指定1000ms以内获取执行结果,此时若完成了任务,isDone为true
-我这里得到了结果,执行结果如下 :</code></pre><p><img src="/images/Java/Thread/Thread_Callable_get1.PNG" alt></p>
-<pre><code>设置超时时间变小,会得到超时的异常。但是异常不属于取消任务,第一个仍为false
-我这里设置的是995ms,其实有个问题,那就是执行应该使用1000ms 为什么到995才异常
-但是异常结束也算是完成,第二个为true
-执行结果如下 :</code></pre><p><img src="/images/Java/Thread/Thread_Callable_get2.PNG" alt></p>
-<pre><code>最后将cancel方法打开,不管设置true还是false;get方法都会异常
-都会抛出CancellationException撤销异常
-执行结果如下 :</code></pre><p><img src="/images/Java/Thread/Thread_Callable_cancellation.PNG" alt></p>
-
+与Runnable不同,这个接口开始于JDK5</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/09/Java/Thread/Callable/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
         
     </section>
 </article>
@@ -461,138 +583,10 @@ Runnable接口有效的解决了这些问题</code></pre>
 </article>
 
 
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/10/06/Java/Thread/Exercise/">线程练习</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="https://liao1816391.github.io.git/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-10-06T10:32:02.000Z" itemprop="datePublished">2019-10-06</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/Exercise/">Exercise</a>, <a class="article-tag-link" href="/tags/Thread/">Thread</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <pre><code>这是和线程相关的练习题,共分为...</code></pre>
-        
-        <p class="article-more-link">
-            <a href="/2019/10/06/Java/Thread/Exercise/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/10/06/Java/Thread/Thread/">Thread类</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="https://liao1816391.github.io.git/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-10-06T03:16:14.000Z" itemprop="datePublished">2019-10-06</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/Thread/">Thread</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <pre><code>Thread 是程序中的执行线程。Java 虚拟机允许应用程序并发地运行多个执行线程
-这个类直接继承自Object并实现Runnable接口,是线程类的顶级父类
-版本源自JDK1.0</code></pre>
-        
-        <p class="article-more-link">
-            <a href="/2019/10/06/Java/Thread/Thread/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/10/06/Java/Thread/Descripton/">线程概叙</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="https://liao1816391.github.io.git/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-10-06T03:11:07.000Z" itemprop="datePublished">2019-10-06</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/Thread/">Thread</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="进程与线程概叙"><a href="#进程与线程概叙" class="headerlink" title="进程与线程概叙"></a>进程与线程概叙</h2><pre><code>要想了解多线程必须要知道线程的原理,而线程是依赖于进程的存在故而要先把进程弄明白</code></pre>
-        
-        <p class="article-more-link">
-            <a href="/2019/10/06/Java/Thread/Descripton/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
 
 
 <nav class="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
 </nav>
 
 

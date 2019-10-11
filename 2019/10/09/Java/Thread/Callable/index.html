@@ -11,7 +11,7 @@
     <meta name="author" content="LaoJQ">
     <meta name="version" content="1.0.0">
     <meta name="keywords" content>
-    <meta name="description" content="Callable接口类似于Runnable,两者都是为那些其实例可能被另一个线程执行的类设计的。但是 Runnable 不会返回结果，并且无法抛出经过检查的异常。如果想在线程执行完毕之后获取一个结果,那么Callable接口是一个选择与Runnable不同,这个接口开始于JDK5泛型类型通过API观察这个接口可以发现,该接口后带了一个泛型这个泛型指定的是返回值的类型方法1V call() throws Exception//计算结果,如果无法计算则抛出异常由于版本靠后,Thre...">
+    <meta name="description" content="Callable接口类似于Runnable,两者都是为那些其实例可能被另一个线程执行的类设计的。但是 Runnable 不会返回结果，并且无法抛出经过检查的异常。如果想在线程执行完毕之后获取一个结果,那么Callable接口是一个选择与Runnable不同,这个接口开始于JDK5泛型类型通过API观察这个接口可以发现,该接口后带了一个泛型这个泛型指定的是返回值的类型方法1V call() throws Exception//计算结果,如果无法计算则抛出异常由于版本靠后,Th...">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 
@@ -51,6 +51,14 @@
         
             <a class="nav-item" href="/categories/Java">
                 <span class="nav-text">Java</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Design">
+                <span class="nav-text">Design</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Algorithm">
+                <span class="nav-text">算法</span>
             </a>
         
             <a class="nav-item" href="/tags">
@@ -121,7 +129,9 @@
         <pre><code>Callable接口类似于Runnable,两者都是为那些其实例可能被另一个线程执行的类设计的。
 但是 Runnable 不会返回结果，并且无法抛出经过检查的异常。
 如果想在线程执行完毕之后获取一个结果,那么Callable接口是一个选择
-与Runnable不同,这个接口开始于JDK5</code></pre><h2 id="泛型类型"><a href="#泛型类型" class="headerlink" title="泛型类型"></a>泛型类型</h2><pre><code>通过API观察这个接口可以发现,该接口后带了一个泛型
+与Runnable不同,这个接口开始于JDK5</code></pre><a id="more"></a>
+
+<h2 id="泛型类型"><a href="#泛型类型" class="headerlink" title="泛型类型"></a>泛型类型</h2><pre><code>通过API观察这个接口可以发现,该接口后带了一个泛型
 这个泛型指定的是返回值的类型</code></pre><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">V <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception<span class="comment">//计算结果,如果无法计算则抛出异常</span></span></span><br></pre></td></tr></table></figure>
 
 <pre><code>由于版本靠后,Thread类没有关于它的构造方法.

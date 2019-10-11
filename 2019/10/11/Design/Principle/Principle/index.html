@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+
+    <title>面向对象开发原则 | 寻找真实</title>
+    <meta name="author" content="LaoJQ">
+    <meta name="version" content="1.0.0">
+    <meta name="keywords" content>
+    <meta name="description" content="要想使用好OOP(Object Oriented Programming)那么了解这几个基本设计原则是很重要的(前辈们的经验)在实际开发中能大大提升开发效率单一职责原则其实就是老生常谈的&amp;quot;高内聚,低耦合&amp;quot;也就是每个类只有一个职责,对外只提供一种功能；而引起该类变化原因只有一个。所有设计模式都遵循这一原则开放关闭原则一个对象对扩展开放,而对修改关闭。简单理解 :     对类的改动是通过添加代码(扩展)来实现,而非修改已有代码。        比如本来...">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="寻找真实" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">寻找真实</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end">
+                <span class="nav-text">后端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Java">
+                <span class="nav-text">Java</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Design">
+                <span class="nav-text">Design</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Algorithm">
+                <span class="nav-text">算法</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/atom.xml">
+                <span class="nav-text">订阅</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://liao1816391.github.io.git"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#单一职责原则"><span class="toc-number">1.</span> <span class="toc-text">单一职责原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开放关闭原则"><span class="toc-number">2.</span> <span class="toc-text">开放关闭原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#里氏替换原则"><span class="toc-number">3.</span> <span class="toc-text">里氏替换原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#依赖倒置原则"><span class="toc-number">4.</span> <span class="toc-text">依赖倒置原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接口隔离原则"><span class="toc-number">5.</span> <span class="toc-text">接口隔离原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迪米特原则"><span class="toc-number">6.</span> <span class="toc-text">迪米特原则</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            面向对象开发原则
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/2019/10/11/Design/Principle/Principle/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-11T12:40:32.000Z" itemprop="datePublished">2019-10-11</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Principle/">Principle</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>要想使用好OOP(Object Oriented Programming)
+那么了解这几个基本设计原则是很重要的(前辈们的经验)
+在实际开发中能大大提升开发效率</code></pre><a id="more"></a>
+
+<h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><pre><code>其实就是老生常谈的&quot;高内聚,低耦合&quot;
+也就是每个类只有一个职责,对外只提供一种功能；
+而引起该类变化原因只有一个。
+所有设计模式都遵循这一原则</code></pre><h2 id="开放关闭原则"><a href="#开放关闭原则" class="headerlink" title="开放关闭原则"></a>开放关闭原则</h2><pre><code>一个对象对扩展开放,而对修改关闭。
+简单理解 : 
+    对类的改动是通过添加代码(扩展)来实现,而非修改已有代码。
+        比如本来有个手机类,且只具备通话功能。
+        但是现在开始的手机不但能通话还能使用APP
+        如果在原手机类中添加一个APP方法是不合理的
+        会导致原有手机也能使用APP,这不科学。硬件也带不动
+        最好的方式是创建子类并扩展APP接口实现功能
+也就是说软件开放人员一旦写出了可以运行的代码则不应该修改它
+而要做到这一点就要借助于抽象和多态了,就是把可能变化的内容抽象出来
+从而使抽象部分相对稳定,而具体实现则是可以改变与扩展的</code></pre><h2 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h2><pre><code>核心思想 : 在父类出现的任意地方都能用子类替代
+也就是说同一继承体现中的对象应该有共同的行为特征</code></pre><h2 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h2><pre><code>要依赖于抽象,而不用依赖于具体实现
+也就是说,在应用程序中所有类如果使用或依赖其他类
+则应该依赖其他类的抽象类,而不是这些其他类的具体类
+为实现这一原则,要求我们在编程的时候针对抽象类或接口编程
+    而尽量避免针对具体实现编程</code></pre><h2 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h2><pre><code>核心思想 : 不应该强迫程序依赖它们不需要使用的方法
+也就是说,接口不需要提供太多的行为,一个接口应该尽量的只提供一种对外功能
+而不应该把所有操作都封装到一个接口中
+    比如增删改查,如果放到一个接口中,那么实现这个接口就要实现所有这些方法
+    而如果放到四个接口,那么如果我只需要添加一查询功能,实现两个接口即可
+        而删除和修改是多余的</code></pre><h2 id="迪米特原则"><a href="#迪米特原则" class="headerlink" title="迪米特原则"></a>迪米特原则</h2><pre><code>核心思想 : 一个对象对于其他对象应该尽可能少的了解(低耦合)
+也就是说降低对象直接的耦合,提高系统的可维护性与代码复用性
+比如一个实现原理在两个类中出现,当需要做修改要修改两个地方
+并且代码也存在重复</code></pre>
+        
+    </section>
+</article>
+
+
+
+<div class="comments">
+    <div id="comments"></div>
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+    new Gitalk({
+        clientID: "7fbe80427f54741e289f",
+        clientSecret: "f34ed5fd92e54c9000bd37ba951948cb939deff5",
+        repo: "liao1816391.github.io",
+        owner: "LaoJQ",
+        admin: ["LaoJQ"],
+        id: "2019/10/11/Design/Principle/Principle",
+        distractionFreeMode: true,
+        title: "面向对象开发原则",
+        body: "https://liao1816391.github.io.git/2019/10/11/Design/Principle/Principle/",
+        labels: ["Principle"]
+    }).render('comments');
+    </script>
+</div>
+
+</div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+            
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+        </script>
+    
+
+</body>
+</html>
