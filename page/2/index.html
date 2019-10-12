@@ -147,6 +147,184 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2019/10/07/Java/Thread/WaitAndNotify/">等待唤醒机制</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/page/2/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-07T08:50:00.000Z" itemprop="datePublished">2019-10-07</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Thread/">Thread</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>针对多个不同线程之间操作同一个数据的情况,被称为线程之间的通信.
+而这个操作不但要考虑到线程的同步问题还有一个隐藏的问题
+如果这些操作之间是有一定的顺序的,比如 A--&gt;B--&gt;C
+那么就不应该是谁获得了执行权就执行谁,这时候java为我们提供了等待唤醒机制</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/07/Java/Thread/WaitAndNotify/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/07/Java/Thread/Lock/">Lock接口</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/page/2/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-07T05:58:01.000Z" itemprop="datePublished">2019-10-07</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Lock/">Lock</a>, <a class="article-tag-link" href="/tags/Thread/">Thread</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>由于synchronized关键字锁对象的添加与释放我们并不明确,java为我们提供了一个Lock接口
+Lock接口源自JDK5,其有三个直接实现类,分别是 :
+ReentrantLock,ReentrantReadWriteLock.ReadLock,ReentrantReadWriteLock.WriteLock
+其中后两个是ReentrantReadWriteLock的嵌套类</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/07/Java/Thread/Lock/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/06/Java/Thread/Synchronized/">synchronized线程同步</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/page/2/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-06T15:08:44.000Z" itemprop="datePublished">2019-10-06</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Synchronized/">Synchronized</a>, <a class="article-tag-link" href="/tags/Thread/">Thread</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>多线程同时执行的时候,如果没有设置同步。那么由于CPU操作的原子性
+假设某个共享成员被访问一次就自增一次或自减一次
+在作数据操作的时候,可能某几个线程拿到的是同一个值,这显然不是我们想要的</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/06/Java/Thread/Synchronized/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/06/Java/Thread/Runnable/">Runnable接口</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/page/2/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-06T11:46:38.000Z" itemprop="datePublished">2019-10-06</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Runnable/">Runnable</a>, <a class="article-tag-link" href="/tags/Thread/">Thread</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>通过继承Thread类实现一个线程对象存在一个弊端,那就是java的单继承问题
+以及继承方式实现多线程需要实例多个对象,这些对象之间如果要做到数据共享只能通过静态的方式
+Runnable接口有效的解决了这些问题</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/06/Java/Thread/Runnable/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2019/10/06/Java/Thread/Exercise/">线程练习</a>
         </h1>
         
@@ -319,50 +497,6 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2019/10/05/Introduction/dirsTest/">JDK环境搭建</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="https://liao1816391.github.io.git/page/2/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-10-05T07:44:06.000Z" itemprop="datePublished">2019-10-05</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/JDK-EnvironmentBuilding/">JDK,EnvironmentBuilding</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <pre><code>在我基本掌握了hexo的最基础操作步骤之后,对自己学习的知识点作了一番梳理.
-java是我接触计算机编程正式开始学习的第一门语言,那么就先开始学习的第一步.
-搭建JDK环境,在这之前。先就计算机作了一个最基本的概叙</code></pre>
-        
-        <p class="article-more-link">
-            <a href="/2019/10/05/Introduction/dirsTest/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
             <a href="/2019/10/05/Java/Introduction/EnvironmentBuilding/">JavaHello与JDK环境搭建</a>
         </h1>
         
@@ -407,7 +541,7 @@ java是我接触计算机编程正式开始学习的第一门语言,那么就先
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2019/10/02/JDK&JRE/">计算机入门,JVM_JRE_JDK</a>
+            <a href="/2019/10/05/Introduction/dirsTest/">JDK环境搭建</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -415,13 +549,13 @@ java是我接触计算机编程正式开始学习的第一门语言,那么就先
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-10-02T11:04:23.000Z" itemprop="datePublished">2019-10-02</time>
+    <time datetime="2019-10-05T07:44:06.000Z" itemprop="datePublished">2019-10-05</time>
 </a>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/JavaBase-HelloPC/">JavaBase,HelloPC</a>
+    <a class="article-tag-link" href="/tags/JDK-EnvironmentBuilding/">JDK,EnvironmentBuilding</a>
 </div>
 
 
@@ -430,174 +564,16 @@ java是我接触计算机编程正式开始学习的第一门语言,那么就先
     
     <section class="article-body markdown-body">
         
-        <h2 id="计算机软件开发"><a href="#计算机软件开发" class="headerlink" title="计算机软件开发"></a>计算机软件开发</h2><h3 id="什么是软件"><a href="#什么是软件" class="headerlink" title="什么是软件?"></a>什么是软件?</h3><pre><code>一系列按照指定顺序组织的计算机数据(也就是信息--&gt;二进制)与指令(处理数据的方式)的集合</code></pre><h3 id="常见软件"><a href="#常见软件" class="headerlink" title="常见软件 :"></a>常见软件 :</h3><pre><code>系统软件 :
-    DOS(Disc Operate System)、Windows、Liux、Mac...
-    最早期是DOS后期出现了方便操作的图形化操作系统
-应用软件 :
-    扫雷、百度网盘、QQ...</code></pre><h3 id="什么是开发"><a href="#什么是开发" class="headerlink" title="什么是开发?"></a>什么是开发?</h3><pre><code>就是制作软件,将一系列数据与指令结合起来</code></pre><h2 id="人机交互"><a href="#人机交互" class="headerlink" title="人机交互"></a>人机交互</h2><pre><code>软件的出现实现了人与计算机之间更好的交互</code></pre><h3 id="交换方式"><a href="#交换方式" class="headerlink" title="交换方式"></a>交换方式</h3><pre><code>图形化界面(Graphical User Interface GUI)这是最常见的,简单直观、容易上手
-命令行方式(Command Line Interface CLI)这需要一个控制台,输入特定指令。比较麻烦,需要记住一些命令</code></pre><h2 id="计算机语言"><a href="#计算机语言" class="headerlink" title="计算机语言"></a>计算机语言</h2><h3 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h3><pre><code>是传递信息用于沟通的一种方式</code></pre><h3 id="计算机语言-1"><a href="#计算机语言-1" class="headerlink" title="计算机语言"></a>计算机语言</h3><pre><code>人与计算机进行信息交流的方式,计算机语言非常多,例如: C、C++、Java</code></pre><h2 id="Java语言"><a href="#Java语言" class="headerlink" title="Java语言"></a>Java语言</h2><pre><code>是SUN(Stanford University Network 斯坦福大学网络公司)1995年推出的高级编程语言</code></pre><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><pre><code>开源 : 是一种面向Internet的语言
-跨平台 : 简单易学、安全可靠、完全面向对象、与平台无关(由JVM保证)
-    原理 : 不同的平台安装对应的JVM,由JVM解析Java程序。</code></pre><h3 id="三大技术架构"><a href="#三大技术架构" class="headerlink" title="三大技术架构"></a>三大技术架构</h3><pre><code>J2EE(Java 2 Platform Enterprise Edition)企业版 : 为企业环境应用程序提供的方案
-J2SE(Java 2 Platform Standard Edition)标准版 : 为开发桌面以及商务应用程序提供的方案
-J2ME(Java 2 Platform Micro Edition)小型版 : 为开发电子消费产品与嵌入式提供的方案
-JDK5.0以后改名为(JAVAEE,JAVASE,JAVAME) 主要是JAVAEE,小型开发对于Android以及IOS有自己的开发软件</code></pre><h2 id="JRE与JDK"><a href="#JRE与JDK" class="headerlink" title="JRE与JDK"></a>JRE与JDK</h2><pre><code>JRE(Java Runtime Environment java运行时环境)
-    由JVM(Java Virtual Machine Java虚拟机)与程序运行的核心类库组成,要运行一个开发好的Java程序只需要JRE即可
-JDK(Java Development Kit java开发工具包)
-    由JRE与Java开发工具组成,开发工具 : 运行工具(java.exe),编译工具(javac.exe),打包工具(jar.exe),文档工具(javadoc.exe)...</code></pre><p>JDK下载 : <a href="https://www.oracle.com/" target="_blank" rel="noopener">www.oracle.com</a></p>
-<h2 id="常见DOS命令与快捷键操作"><a href="#常见DOS命令与快捷键操作" class="headerlink" title="常见DOS命令与快捷键操作"></a>常见DOS命令与快捷键操作</h2><pre><code>DOS命令 : 
-    打开DOS窗口 : win键或者点击任务栏的开始,在搜索框输入cmd
-    运行程序 : 以.exe后缀文件为例(直接到程序所在的目录键入程序名称即可),比如运行(java.exe)--&gt;(java)
-    盘符切换 : (盘符:) 例如 C:
-    列出当前目下的文件与文件夹 : (dir) 
-    创建目录 : (md 目录名) make directory
-    删除目录 : (rd 目录名) remove directory,被删除的目录下没有任何文件或文件夹,否则失败。回收站是没有目录的
-    进入指定目录 : (cd 目录名)
-    回退到上级目录 : (cd..)
-    回退到根目录 : (cd\) 也就是当前盘符路径
-    删除文件 : (del)    回收站是没有文件的
-    退出dos命令行 : (exit)
-    批量删除 : (del *.txt) 其中的*代表通配符,*.txt代表所有.txt文件。如果是所有文件--&gt;(*)
-    ...
-    帮助 : (help) 所有的命令信息,那么查找(cd)命令的详细信息(help cd) 一般来说系统中的帮助不是(help)就是(?)
-快捷键 :
-    全选    Ctrl+A
-    复制    Ctrl+C
-    粘贴    Ctrl+V
-    剪切    Ctrl+X
-    撤销    Ctrl+Z
-    保存    Ctrl+S</code></pre><h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><pre><code>执行一个应用程序,默认是要进入该程序所在的目录然后运行。
-但是也可以然它在任意位置都能运行,比如(notepad)Windows系统自带的记事本</code></pre><h3 id="设置Java环境变量"><a href="#设置Java环境变量" class="headerlink" title="设置Java环境变量"></a>设置Java环境变量</h3><pre><code>鼠标右键点击(我的电脑)--&gt;高级系统设置--&gt;环境变量--&gt;系统变量--&gt;变量名为Path
-在这列信息里面添加JDK的bin(binary)目录路径信息(绝对路径),例如 C:\Program Files\Java\jdk-9\bin
-这里要注意与其他信息用(;)隔开
-重新打开dos窗口,键入javac回车。如果以下信息</code></pre><p><img src="/images/01_JDK_JRE/javac.PNG" alt><br>    那么表示设置成功了</p>
-<a href="/2019/09/07/标签/" title="hehe">hehe</a>
-<p><a href="https://docs.oracle.com/en/java/javase/" target="_blank" rel="noopener">java API查询地址</a></p>
-
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/09/25/Map/">Map</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="https://liao1816391.github.io.git/page/2/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-09-25T14:36:37.274Z" itemprop="datePublished">2019-09-25</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/JavaBase-Map/">JavaBase,Map</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="map概叙"><a href="#map概叙" class="headerlink" title="map概叙"></a>map概叙</h2><pre><code>案例:
-    学生案例,例如要区分一个学生  往往需要使用到学号,是不能单纯的通过姓名和年龄作区分的
-    如果采用单个元素的集合  需要查找一个学生的名字,那么需要遍历直到找到为止
-    由于学号可以用于区分学生信息,那么学号是唯一的   
-    Java提供了一种集合: Map
-特点 :
-    将键映射到值的对象,一个映射不能包含重复的键;并且每个键只能映射一个值.
-Map和Collection有何区别？
-        Map集合储存元素是成对出现的,Map集合的键是唯一的,值是可重复的.
-        Collection集合储存的元素是单独出现的.Collection的儿子Set的唯一的,List是可重复的.
-注意: Map的数据结构值针对键有效,跟值无关
-      Collection集合的数据结构是针对元素有效</code></pre>
+        <pre><code>在我基本掌握了hexo的最基础操作步骤之后,对自己学习的知识点作了一番梳理.
+java是我接触计算机编程正式开始学习的第一门语言,那么就先开始学习的第一步.
+搭建JDK环境,在这之前。先就计算机作了一个最基本的概叙</code></pre>
         
         <p class="article-more-link">
-            <a href="/2019/09/25/Map/#more">
+            <a href="/2019/10/05/Introduction/dirsTest/#more">
                 <span class="vm">阅读更多</span>
                 <i class="icon-arrow-double-right vm"></i>    
             </a>
         </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/09/09/Set/">Set</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="https://liao1816391.github.io.git/page/2/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-09-09T06:53:10.708Z" itemprop="datePublished">2019-09-09</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/JavaBase-Set/">JavaBase,Set</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="Set概叙"><a href="#Set概叙" class="headerlink" title="Set概叙"></a>Set概叙</h2><pre><code>首先它是一个接口
-集合元素无序(存储顺序与取出顺序不一致),不可重复
-对比它的父接口Collection,并没有特有方法</code></pre>
-        
-        <p class="article-more-link">
-            <a href="/2019/09/09/Set/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/09/08/tags/">tags</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="https://liao1816391.github.io.git/page/2/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-09-07T16:39:23.000Z" itemprop="datePublished">2019-09-08</time>
-</a>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
         
         
     </section>
