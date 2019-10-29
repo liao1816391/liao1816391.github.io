@@ -147,6 +147,225 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2019/10/07/Java/Thread/Lock/">Lock接口</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/categories/Java/page/2/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-07T05:58:01.000Z" itemprop="datePublished">2019-10-07</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Lock/">Lock</a>, <a class="article-tag-link" href="/tags/Thread/">Thread</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>由于synchronized关键字锁对象的添加与释放我们并不明确,java为我们提供了一个Lock接口
+Lock接口源自JDK5,其有三个直接实现类,分别是 :
+ReentrantLock,ReentrantReadWriteLock.ReadLock,ReentrantReadWriteLock.WriteLock
+其中后两个是ReentrantReadWriteLock的嵌套类</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/07/Java/Thread/Lock/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/06/Java/Thread/Synchronized/">synchronized线程同步</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/categories/Java/page/2/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-06T15:08:44.000Z" itemprop="datePublished">2019-10-06</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Synchronized/">Synchronized</a>, <a class="article-tag-link" href="/tags/Thread/">Thread</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>多线程同时执行的时候,如果没有设置同步。那么由于CPU操作的原子性
+假设某个共享成员被访问一次就自增一次或自减一次
+在作数据操作的时候,可能某几个线程拿到的是同一个值,这显然不是我们想要的</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/06/Java/Thread/Synchronized/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/06/Java/Thread/Runnable/">Runnable接口</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/categories/Java/page/2/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-06T11:46:38.000Z" itemprop="datePublished">2019-10-06</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Runnable/">Runnable</a>, <a class="article-tag-link" href="/tags/Thread/">Thread</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>通过继承Thread类实现一个线程对象存在一个弊端,那就是java的单继承问题
+以及继承方式实现多线程需要实例多个对象,这些对象之间如果要做到数据共享只能通过静态的方式
+Runnable接口有效的解决了这些问题</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/06/Java/Thread/Runnable/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/06/Java/Thread/Exercise/">线程练习</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/categories/Java/page/2/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-06T10:32:02.000Z" itemprop="datePublished">2019-10-06</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Exercise/">Exercise</a>, <a class="article-tag-link" href="/tags/Thread/">Thread</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>这是和线程相关的练习题,共分为...</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/06/Java/Thread/Exercise/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/06/Java/Thread/Thread/">Thread类</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/categories/Java/page/2/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-06T03:16:14.000Z" itemprop="datePublished">2019-10-06</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Thread/">Thread</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>Thread 是程序中的执行线程。Java 虚拟机允许应用程序并发地运行多个执行线程
+这个类直接继承自Object并实现Runnable接口,是线程类的顶级父类
+版本源自JDK1.0</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/06/Java/Thread/Thread/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2019/10/06/Java/Thread/Descripton/">线程概叙</a>
         </h1>
         
@@ -161,7 +380,7 @@
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/Thread/">Thread</a>
+    <a class="article-tag-link" href="/tags/Description/">Description</a>, <a class="article-tag-link" href="/tags/Thread/">Thread</a>
 </div>
 
 

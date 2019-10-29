@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+
+    <title>反射概叙 | 寻找真实</title>
+    <meta name="author" content="LaoJQ">
+    <meta name="version" content="1.0.0">
+    <meta name="keywords" content>
+    <meta name="description" content="在Java中,反射是一个高级的话题反射与类加载和类加载当程序需要使用某个类时,若该类未被加载入内存,则系统通过加载、连接、初始化三步实现对这个类的初始化加载 :    就是指将class文件读入内存,并为之创建一个Class对象    任何类被使用时系统都会建立一个Class对象连接 :    验证 是否有正确的内部结构,并和其他类协调一致    准备 负责为类的静态成员分配内存,并设置默认初始化值    解析 将类的二进制数据中的符号引用替换为直接引用初始化 : ...">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="寻找真实" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">寻找真实</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end">
+                <span class="nav-text">后端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Java">
+                <span class="nav-text">Java</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Design">
+                <span class="nav-text">Design</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Algorithm">
+                <span class="nav-text">算法</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/atom.xml">
+                <span class="nav-text">订阅</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://liao1816391.github.io.git"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载"><span class="toc-number">1.</span> <span class="toc-text">类加载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载器"><span class="toc-number">2.</span> <span class="toc-text">类加载器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#组成"><span class="toc-number">2.1.</span> <span class="toc-text">组成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反射"><span class="toc-number">3.</span> <span class="toc-text">反射</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#获取Class对象的三种方式"><span class="toc-number">3.1.</span> <span class="toc-text">获取Class对象的三种方式:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取无参构造方法并使用"><span class="toc-number">3.2.</span> <span class="toc-text">获取无参构造方法并使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Constructor-lt-gt"><span class="toc-number">3.3.</span> <span class="toc-text">Constructor&lt;?&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Field"><span class="toc-number">3.4.</span> <span class="toc-text">Field</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Method"><span class="toc-number">3.5.</span> <span class="toc-text">Method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过反射运行配置文件"><span class="toc-number">3.6.</span> <span class="toc-text">通过反射运行配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过反射越过泛型检查"><span class="toc-number">3.7.</span> <span class="toc-text">通过反射越过泛型检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态代理"><span class="toc-number">3.8.</span> <span class="toc-text">动态代理</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            反射概叙
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/2019/10/26/Java/Reflect/Description/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-26T09:27:05.000Z" itemprop="datePublished">2019-10-26</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Reflect/">Reflect</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>在Java中,反射是一个高级的话题
+反射与类加载和</code></pre><a id="more"></a>
+
+<h2 id="类加载"><a href="#类加载" class="headerlink" title="类加载"></a>类加载</h2><pre><code>当程序需要使用某个类时,若该类未被加载入内存,
+则系统通过加载、连接、初始化三步实现对这个类的初始化
+加载 :
+    就是指将class文件读入内存,并为之创建一个Class对象
+    任何类被使用时系统都会建立一个Class对象
+连接 :
+    验证 是否有正确的内部结构,并和其他类协调一致
+    准备 负责为类的静态成员分配内存,并设置默认初始化值
+    解析 将类的二进制数据中的符号引用替换为直接引用
+初始化 : 也就是 静态成员变量--静态构造的过程
+
+类的初始化时机,
+    创建类的实例
+    访问类的静态变量,或为静态变量赋值
+    调用类的静态方法
+    初始化某类的子类
+    直接使用java.exe运行某个主类
+    使用反射来强制创建某个类或接口对应的java.lang.Class对象</code></pre><h2 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h2><pre><code>负责将class文件加载到内存中,为之生成对应的Class对象
+了解类加载机制能够更好的理解程序的运行</code></pre><h3 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h3><pre><code>Bootstrap ClassLoader 根类加载器
+    也被称为引导类加载器、负责java核心类的加载
+    比如System,String等.位于JDK的JRE的lib目录下rt.jar文件(jdk9以前)
+Extension ClassLoader 扩展类加载器
+    负责JRE的扩展目录下中jar包的加载
+    在JDK的JRE的lib目录下ext目录
+System ClassLoader 系统类加载器(也就是自定义的类)
+    负责在JVM启动时加载来自java命令的class文件
+    以及classpath环境变量所指定的jar包和类路径</code></pre><h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><pre><code>java的反射是指在运行状态中,对任意一个类都能都能知道这个类的所有属性与方法
+要解析一个类必须拿到它的Class对象,使用的就是这其中的方法
+Class&lt;T&gt;类
+    Field getField(String name) //成员变量
+    public Constructor&lt;T&gt; getConstructor(Class&lt;?&gt;... parameterTypes)//构造方法
+    Method getMethod(String name, Class&lt;?&gt;... parameterTypes) //成员方法
+Constructor&lt;T&gt;类     构造器
+类 Method             成员方法
+类 Field             成员变量</code></pre><h3 id="获取Class对象的三种方式"><a href="#获取Class对象的三种方式" class="headerlink" title="获取Class对象的三种方式:"></a>获取Class对象的三种方式:</h3><pre><code>A: Object类的getClass方法
+B: 数据类型的静态属性.class
+C: Class类的静态方法public static Class&lt;?&gt; forName(String className)
+    这里的类名称需要全路径名称(绝对/相对)
+    尽量使用编译器的提示(在编译器中直接敲 包名.类名)
+    或者使用编译器的一些协助,右键类文件 Copy Reference(Idea)
+使用场景 :
+    自使用 : 随意,一般第二种比较方便(文件少)
+    开发 : 一般第三种
+        由于第三种是字符串,而非具体类名,我们可以把字符串配置到文件。
+        修改灵活,不会因为对类的改动而影响整个项目</code></pre><h3 id="获取无参构造方法并使用"><a href="#获取无参构造方法并使用" class="headerlink" title="获取无参构造方法并使用"></a>获取无参构造方法并使用</h3><pre><code>获取所有公有构造
+    public Constructor&lt;?&gt;[] getConstructors() throws SecurityException
+获取所有构造
+    public Constructor&lt;?&gt;[] getDeclaredConstructors() throws SecurityException
+获取公有单个构造
+    public Constructor&lt;T&gt; getDeclaredConstructor(Class&lt;?&gt;... parameterTypes)
+         throws NoSuchMethodException, SecurityException
+获取单个构造
+    public Constructor&lt;T&gt; getDeclaredConstructor(Class&lt;?&gt;... parameterTypes)
+         throws NoSuchMethodException, SecurityException
+单个构造使用的参数列表都是Class类的可变参数,用以适用参数类型变化
+    注意 : 可以使用 基本类型.class   而且这和  对应包装类.class不一样   如果使用错误报错(JDK9)</code></pre><h3 id="Constructor-lt-gt"><a href="#Constructor-lt-gt" class="headerlink" title="Constructor&lt;?&gt;"></a>Constructor&lt;?&gt;</h3><pre><code>实例对象
+    public T newInstance(Object... initargs) throws InstantiationException,
+        IllegalAccessException,IllegalArgumentException,InvocationTargetException
+    但是在未设置访问权限之前,private修饰的构造是无法实例的 IllegalAccessException
+设置访问权限 :
+    在其父类 中有
+    public void setAccessible(boolean flag) throws SecurityException
+    可以修改访问权限
+其实访问权限的设置是破坏封装性的,所以一般是要对class文件进行加密的,一般追加内容或者对数据作位异或</code></pre><h3 id="Field"><a href="#Field" class="headerlink" title="Field"></a>Field</h3><pre><code>设置某个类型的值
+    public void set(Object obj, Object value)
+     throws IllegalArgumentException,IllegalAccessException
+        这里是为该成员变量的第一个参数(实例对象)设置值 value
+    setInt......分别是八大基本数据类型
+获取某个类型的值
+    public Object get(Object obj)
+       throws IllegalArgumentException,IllegalAccessException
+        其参数是该类型的实例,可以理解为获取实例的成员
+    getInt...依然是八大基本数据类型
+设置访问权限 :
+    public void setAccessible(boolean flag) throws SecurityException
+    非公有的需要设置或者获取都需要设置访问权限</code></pre><h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h3><pre><code>获取某个类型的方法
+    public Method[] getDeclaredMethods() throws SecurityException
+    获取该类所有声明方法,但不包括其父类
+    public Method[] getMethods() throws SecurityException 
+    获取该类所有公共方法包括其父类
+    public Method getMethod(String name, Class&lt;?&gt;... parameterTypes)
+        throws NoSuchMethodException, SecurityException
+    获取该类公共方法,name为其名称,后面是参数列表可变参数(类型),可以获取父类
+    public Method getDeclaredMethod(String name, Class&lt;?&gt;... parameterTypes)
+        throws NoSuchMethodException, SecurityException
+    获取该类自有声明的方法,不可获取父类方法(重写方法可以)
+使用获取的方法
+    public Object invoke(Object obj, Object... args)
+        throws IllegalAccessException, IllegalArgumentException,
+        InvocationTargetException
+    第一个参数obj是实例对象,后面的可变参数是该方法的参数列表
+    返回值为该方法运行的返回值
+    如果非公共方法,则需要设置访问权限</code></pre><h3 id="通过反射运行配置文件"><a href="#通过反射运行配置文件" class="headerlink" title="通过反射运行配置文件"></a>通过反射运行配置文件</h3><pre><code>提供一个包含类与方法信息的文件,要求通过读取文件运行对应类的方法
+    这样做有个好处,如果需要修改运行的类.只需要修改配置信息即可
+    比如运行Student.love   Teacher.love .....</code></pre><h3 id="通过反射越过泛型检查"><a href="#通过反射越过泛型检查" class="headerlink" title="通过反射越过泛型检查"></a>通过反射越过泛型检查</h3><h3 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h3><pre><code>在开发中往往需要对Demo直接相关的方法做权限验证与日志记录
+那么,每添加一个类似的类以及添加类似的方法都需要添加这两步
+如果不需要这个步骤了,又要撤销这些操作
+    这时候java提供了代理技术
+在java的java.lang.reflect包下提供了一个Proxy(代理)类
+和InvocationHandler(调用处理器)接口
+可以通过这个类和接口生成动态代理对象。JDK提供的代理只能针对接口做代理
+通过cglib可以对类实现代理
+
+Proxy类的构造方法是protected修饰,受保护不能直接实例
+要获得其实例需要使用以下方法 :</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//loader是被代理类的类加载器,interfaces是被代理类的接口集,以及一个调用处理器实现类</span></span><br><span class="line"><span class="comment">//返回的是代理对象</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">newProxyInstance</span><span class="params">(ClassLoader loader, Class&lt;?&gt;[] interfaces,</span></span></span><br><span class="line"><span class="function"><span class="params">        InvocationHandler h)</span> <span class="keyword">throws</span> IllegalArgumentException</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>接下来是生成一个InvocationHandler的实现类实现其invoke方法
+    invoke方法中proxy这个参数代表的是?</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyInvocation</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Object target;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTarget</span><span class="params">(Object target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.target = target;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyInvocation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyInvocation</span><span class="params">(Object target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.target = target;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> proxy  代理实例</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> method 调用的method实例</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> args   方法的参数列表</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Throwable</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"权限校验"</span>);</span><br><span class="line">        Object result = method.invoke(target, args);</span><br><span class="line">        System.out.println(<span class="string">"记录日志"</span>);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        
+    </section>
+</article>
+
+
+
+<div class="comments">
+    <div id="comments"></div>
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+    new Gitalk({
+        clientID: "7fbe80427f54741e289f",
+        clientSecret: "f34ed5fd92e54c9000bd37ba951948cb939deff5",
+        repo: "liao1816391.github.io",
+        owner: "LaoJQ",
+        admin: ["LaoJQ"],
+        id: "2019/10/26/Java/Reflect/Description",
+        distractionFreeMode: true,
+        title: "反射概叙",
+        body: "https://liao1816391.github.io.git/2019/10/26/Java/Reflect/Description/",
+        labels: ["Reflect"]
+    }).render('comments');
+    </script>
+</div>
+
+</div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+            
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+        </script>
+    
+
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+
+    <title>网络编程概叙 | 寻找真实</title>
+    <meta name="author" content="LaoJQ">
+    <meta name="version" content="1.0.0">
+    <meta name="keywords" content>
+    <meta name="description" content="有很多人都说,计算机应用程序就是由IO流、多线程、网络编程组成的那么网络编程的主要组成成分又是哪些呢?    分为三大类,IP地址、端口号、协议什么是网络编程UDPTCP使用TCP协议发送数据共分为三步     创建Socket类对象    获得该对象的输出流,并写数据    关闭资源而使用TCP协议读取数据    创建ServerSocket对象    通过accept方法获得发送的Socket对象    获取Socket对象的输入流,并读取数据    关闭资源...">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="寻找真实" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">寻找真实</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end">
+                <span class="nav-text">后端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Java">
+                <span class="nav-text">Java</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Design">
+                <span class="nav-text">Design</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Algorithm">
+                <span class="nav-text">算法</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/atom.xml">
+                <span class="nav-text">订阅</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://liao1816391.github.io.git"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是网络编程"><span class="toc-number">1.</span> <span class="toc-text">什么是网络编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDP"><span class="toc-number">2.</span> <span class="toc-text">UDP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP"><span class="toc-number">3.</span> <span class="toc-text">TCP</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            网络编程概叙
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/2019/10/22/Java/Net/Description/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-22T13:41:28.000Z" itemprop="datePublished">2019-10-22</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Description/">Description</a>, <a class="article-tag-link" href="/tags/Net/">Net</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>有很多人都说,计算机应用程序就是由IO流、多线程、网络编程组成的
+那么网络编程的主要组成成分又是哪些呢?
+    分为三大类,IP地址、端口号、协议</code></pre><a id="more"></a>
+
+<h2 id="什么是网络编程"><a href="#什么是网络编程" class="headerlink" title="什么是网络编程"></a>什么是网络编程</h2><h2 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h2><h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><pre><code>使用TCP协议发送数据共分为三步 
+    创建Socket类对象
+    获得该对象的输出流,并写数据
+    关闭资源
+而使用TCP协议读取数据
+    创建ServerSocket对象
+    通过accept方法获得发送的Socket对象
+    获取Socket对象的输入流,并读取数据
+    关闭资源
+
+完成案例 :
+    客户端不断的发送数据服务器端不断接收数据
+        注意: 使用readLine如果客户端不断刷新则不断读取
+    客户端读取文件发送到服务器并写入,这就是所谓文件上传
+    客户端读取图片并发送到服务器写入
+        注意: 使用字节写数据,通道内会存在一些数据。需要实时刷新
+            否则容易丢失数据
+    实现多线程上传</code></pre>
+        
+    </section>
+</article>
+
+
+
+<div class="comments">
+    <div id="comments"></div>
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+    new Gitalk({
+        clientID: "7fbe80427f54741e289f",
+        clientSecret: "f34ed5fd92e54c9000bd37ba951948cb939deff5",
+        repo: "liao1816391.github.io",
+        owner: "LaoJQ",
+        admin: ["LaoJQ"],
+        id: "2019/10/22/Java/Net/Description",
+        distractionFreeMode: true,
+        title: "网络编程概叙",
+        body: "https://liao1816391.github.io.git/2019/10/22/Java/Net/Description/",
+        labels: ["Description","Net"]
+    }).render('comments');
+    </script>
+</div>
+
+</div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+            
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+        </script>
+    
+
+</body>
+</html>

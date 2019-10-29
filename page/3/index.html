@@ -147,6 +147,399 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2019/10/07/Java/Thread/Lock/">Lock接口</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/page/3/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-07T05:58:01.000Z" itemprop="datePublished">2019-10-07</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Lock/">Lock</a>, <a class="article-tag-link" href="/tags/Thread/">Thread</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>由于synchronized关键字锁对象的添加与释放我们并不明确,java为我们提供了一个Lock接口
+Lock接口源自JDK5,其有三个直接实现类,分别是 :
+ReentrantLock,ReentrantReadWriteLock.ReadLock,ReentrantReadWriteLock.WriteLock
+其中后两个是ReentrantReadWriteLock的嵌套类</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/07/Java/Thread/Lock/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/06/Java/Thread/Synchronized/">synchronized线程同步</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/page/3/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-06T15:08:44.000Z" itemprop="datePublished">2019-10-06</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Synchronized/">Synchronized</a>, <a class="article-tag-link" href="/tags/Thread/">Thread</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>多线程同时执行的时候,如果没有设置同步。那么由于CPU操作的原子性
+假设某个共享成员被访问一次就自增一次或自减一次
+在作数据操作的时候,可能某几个线程拿到的是同一个值,这显然不是我们想要的</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/06/Java/Thread/Synchronized/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/06/Java/Thread/Runnable/">Runnable接口</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/page/3/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-06T11:46:38.000Z" itemprop="datePublished">2019-10-06</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Runnable/">Runnable</a>, <a class="article-tag-link" href="/tags/Thread/">Thread</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>通过继承Thread类实现一个线程对象存在一个弊端,那就是java的单继承问题
+以及继承方式实现多线程需要实例多个对象,这些对象之间如果要做到数据共享只能通过静态的方式
+Runnable接口有效的解决了这些问题</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/06/Java/Thread/Runnable/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/06/Java/Thread/Exercise/">线程练习</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/page/3/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-06T10:32:02.000Z" itemprop="datePublished">2019-10-06</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Exercise/">Exercise</a>, <a class="article-tag-link" href="/tags/Thread/">Thread</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>这是和线程相关的练习题,共分为...</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/06/Java/Thread/Exercise/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/06/Java/Thread/Thread/">Thread类</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/page/3/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-06T03:16:14.000Z" itemprop="datePublished">2019-10-06</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Thread/">Thread</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>Thread 是程序中的执行线程。Java 虚拟机允许应用程序并发地运行多个执行线程
+这个类直接继承自Object并实现Runnable接口,是线程类的顶级父类
+版本源自JDK1.0</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/06/Java/Thread/Thread/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/06/Java/Thread/Descripton/">线程概叙</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/page/3/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-06T03:11:07.000Z" itemprop="datePublished">2019-10-06</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Description/">Description</a>, <a class="article-tag-link" href="/tags/Thread/">Thread</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="进程与线程概叙"><a href="#进程与线程概叙" class="headerlink" title="进程与线程概叙"></a>进程与线程概叙</h2><pre><code>要想了解多线程必须要知道线程的原理,而线程是依赖于进程的存在故而要先把进程弄明白</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/06/Java/Thread/Descripton/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/05/Algorithm/Sort/quickSort/">快速排序(quickSort)</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/page/3/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-05T14:49:32.000Z" itemprop="datePublished">2019-10-05</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Sort/">Sort</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="快速排序思想"><a href="#快速排序思想" class="headerlink" title="快速排序思想"></a>快速排序思想</h2><pre><code>取序列中的第一个元素,并将它移动到它应该处在的位置上
+并且它前面的元素都小于它,后面的元素都大于它
+之后再对前后两部分进行相同逻辑的递归,整个数组就排好序了</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/05/Algorithm/Sort/quickSort/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/05/Introduction/dirsTest/">JDK环境搭建</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/page/3/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-05T07:44:06.000Z" itemprop="datePublished">2019-10-05</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/JDK-EnvironmentBuilding/">JDK,EnvironmentBuilding</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>在我基本掌握了hexo的最基础操作步骤之后,对自己学习的知识点作了一番梳理.
+java是我接触计算机编程正式开始学习的第一门语言,那么就先开始学习的第一步.
+搭建JDK环境,在这之前。先就计算机作了一个最基本的概叙</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/05/Introduction/dirsTest/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/05/Java/Introduction/EnvironmentBuilding/">JavaHello与JDK环境搭建</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/page/3/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-05T07:44:06.000Z" itemprop="datePublished">2019-10-05</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/EnvironmentBuilding/">EnvironmentBuilding</a>, <a class="article-tag-link" href="/tags/JDK/">JDK</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>在我基本掌握了hexo的最基础操作步骤之后,对自己学习的知识点作了一番梳理.
+java是我接触计算机编程正式开始学习的第一门语言,那么就先开始学习的第一步.
+搭建JDK环境,在这之前。先就计算机作了一个最基本的概叙</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/05/Java/Introduction/EnvironmentBuilding/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2019/10/02/JDK&JRE/">计算机入门,JVM_JRE_JDK</a>
         </h1>
         
@@ -218,220 +611,10 @@ JDK(Java Development Kit java开发工具包)
 </article>
 
 
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/09/25/Map/">Map</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="https://liao1816391.github.io.git/page/3/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-09-25T14:36:37.274Z" itemprop="datePublished">2019-09-25</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/JavaBase-Map/">JavaBase,Map</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="map概叙"><a href="#map概叙" class="headerlink" title="map概叙"></a>map概叙</h2><pre><code>案例:
-    学生案例,例如要区分一个学生  往往需要使用到学号,是不能单纯的通过姓名和年龄作区分的
-    如果采用单个元素的集合  需要查找一个学生的名字,那么需要遍历直到找到为止
-    由于学号可以用于区分学生信息,那么学号是唯一的   
-    Java提供了一种集合: Map
-特点 :
-    将键映射到值的对象,一个映射不能包含重复的键;并且每个键只能映射一个值.
-Map和Collection有何区别？
-        Map集合储存元素是成对出现的,Map集合的键是唯一的,值是可重复的.
-        Collection集合储存的元素是单独出现的.Collection的儿子Set的唯一的,List是可重复的.
-注意: Map的数据结构值针对键有效,跟值无关
-      Collection集合的数据结构是针对元素有效</code></pre>
-        
-        <p class="article-more-link">
-            <a href="/2019/09/25/Map/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/09/09/Set/">Set</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="https://liao1816391.github.io.git/page/3/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-09-09T06:53:10.708Z" itemprop="datePublished">2019-09-09</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/JavaBase-Set/">JavaBase,Set</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="Set概叙"><a href="#Set概叙" class="headerlink" title="Set概叙"></a>Set概叙</h2><pre><code>首先它是一个接口
-集合元素无序(存储顺序与取出顺序不一致),不可重复
-对比它的父接口Collection,并没有特有方法</code></pre>
-        
-        <p class="article-more-link">
-            <a href="/2019/09/09/Set/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/09/08/tags/">tags</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="https://liao1816391.github.io.git/page/3/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-09-07T16:39:23.000Z" itemprop="datePublished">2019-09-08</time>
-</a>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/09/07/标签/">标签</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="https://liao1816391.github.io.git/page/3/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-09-07T14:20:41.321Z" itemprop="datePublished">2019-09-07</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/JavaBase/">JavaBase</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>使用集合做一个用户登录注册的基本实现</p>
-        
-        <p class="article-more-link">
-            <a href="/2019/09/07/标签/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/09/07/hello-world/">Hello World</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="https://liao1816391.github.io.git/page/3/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-09-07T08:54:41.487Z" itemprop="datePublished">2019-09-07</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/JavaBase/">JavaBase</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-        
-        <p class="article-more-link">
-            <a href="/2019/09/07/hello-world/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
 </nav>
 
 

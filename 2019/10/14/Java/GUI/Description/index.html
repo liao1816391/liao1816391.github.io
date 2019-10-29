@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+
+    <title>GUI概叙 | 寻找真实</title>
+    <meta name="author" content="LaoJQ">
+    <meta name="version" content="1.0.0">
+    <meta name="keywords" content>
+    <meta name="description" content="GUI(Graphical User Interface)又被称为图形用户接口对比需要记忆操作命令的CLI(Command Line Interface)它显得更为方便与直观Java相关包java.awt : (abstract window ToolKit)抽象窗口工具包    直接属于java基本类库,需调用本地系统方法实现功能,属重量级控件javax.swing : (javax代表扩展包)    属于java扩展包    在AWT的基础上建立的一套图形界面系统,其提供了...">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="寻找真实" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">寻找真实</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end">
+                <span class="nav-text">后端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Java">
+                <span class="nav-text">Java</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Design">
+                <span class="nav-text">Design</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Algorithm">
+                <span class="nav-text">算法</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/atom.xml">
+                <span class="nav-text">订阅</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://liao1816391.github.io.git"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java相关包"><span class="toc-number">1.</span> <span class="toc-text">Java相关包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#继承体系图"><span class="toc-number">2.</span> <span class="toc-text">继承体系图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#窗口相关"><span class="toc-number">2.1.</span> <span class="toc-text">窗口相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#框架相关"><span class="toc-number">2.2.</span> <span class="toc-text">框架相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#窗体布局"><span class="toc-number">2.3.</span> <span class="toc-text">窗体布局</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一个按钮"><span class="toc-number">3.</span> <span class="toc-text">一个按钮</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#相关方法"><span class="toc-number">3.1.</span> <span class="toc-text">相关方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一个文本"><span class="toc-number">4.</span> <span class="toc-text">一个文本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更改背景颜色"><span class="toc-number">5.</span> <span class="toc-text">更改背景颜色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#鼠标事件"><span class="toc-number">6.</span> <span class="toc-text">鼠标事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#键盘事件"><span class="toc-number">7.</span> <span class="toc-text">键盘事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#菜单"><span class="toc-number">8.</span> <span class="toc-text">菜单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#netBeans"><span class="toc-number">9.</span> <span class="toc-text">netBeans</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#弹出提示"><span class="toc-number">10.</span> <span class="toc-text">弹出提示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#窗体跳转"><span class="toc-number">11.</span> <span class="toc-text">窗体跳转</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            GUI概叙
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/2019/10/14/Java/GUI/Description/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-14T14:44:06.000Z" itemprop="datePublished">2019-10-14</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Description/">Description</a>, <a class="article-tag-link" href="/tags/GUI/">GUI</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>GUI(Graphical User Interface)又被称为图形用户接口
+对比需要记忆操作命令的CLI(Command Line Interface)
+它显得更为方便与直观</code></pre><h2 id="Java相关包"><a href="#Java相关包" class="headerlink" title="Java相关包"></a>Java相关包</h2><pre><code>java.awt : (abstract window ToolKit)抽象窗口工具包
+    直接属于java基本类库,需调用本地系统方法实现功能,属重量级控件
+javax.swing : (javax代表扩展包)
+    属于java扩展包
+    在AWT的基础上建立的一套图形界面系统,其提供了更多组件,且完全由Java实现
+    增强了移植性,属于轻量级控件(即与系统的关联(耦合)性低)</code></pre><h2 id="继承体系图"><a href="#继承体系图" class="headerlink" title="继承体系图"></a>继承体系图</h2><p><img src="/images/Java/GUI/GUI_extends_picture.PNG" alt></p>
+<h3 id="窗口相关"><a href="#窗口相关" class="headerlink" title="窗口相关"></a>窗口相关</h3><h3 id="框架相关"><a href="#框架相关" class="headerlink" title="框架相关"></a>框架相关</h3><h3 id="窗体布局"><a href="#窗体布局" class="headerlink" title="窗体布局"></a>窗体布局</h3><pre><code>Java的窗体布局共有
+    流式布局、边界布局、网格布局、网格包布局、卡片布局....</code></pre><h2 id="一个按钮"><a href="#一个按钮" class="headerlink" title="一个按钮"></a>一个按钮</h2><h3 id="相关方法"><a href="#相关方法" class="headerlink" title="相关方法"></a>相关方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addActionListener</span><span class="params">(ActionListener l)</span><span class="comment">//添加指定的动作监听器</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeActionListener</span><span class="params">(ActionListener l)</span><span class="comment">//移除指定的动作监听器</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ActionListener[] <span class="title">getActionListeners</span><span class="params">()</span><span class="comment">//获取当前所有注册的监听器的数组</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="一个文本"><a href="#一个文本" class="headerlink" title="一个文本"></a>一个文本</h2><h2 id="更改背景颜色"><a href="#更改背景颜色" class="headerlink" title="更改背景颜色"></a>更改背景颜色</h2><h2 id="鼠标事件"><a href="#鼠标事件" class="headerlink" title="鼠标事件"></a>鼠标事件</h2><h2 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h2><pre><code>在键盘适配器类中有关于键盘按键操作的方法
+分别为 按下: Pressed 释放: Released </code></pre><h2 id="菜单"><a href="#菜单" class="headerlink" title="菜单"></a>菜单</h2><pre><code>与菜单有关的类共有 MenuBar 菜单栏,Menu 菜单,以及MenuItem 菜单项
+其中菜单栏可以包含菜单和菜单项(如果菜单中只有一项)
+菜单可以包含菜单(多级目录)和菜单项
+然后就是关于窗体的设置,awt是不支持swing的菜单栏的
+如果要使用swing的菜单栏,那么得使用swing的窗体</code></pre><h2 id="netBeans"><a href="#netBeans" class="headerlink" title="netBeans"></a>netBeans</h2><pre><code>netBeans是Sun公司提供的一款awt编译器,使用它能快速的设置awt界面
+如何修改窗体图标 :
+    需要用到ToolKit类,这个类是所有AWT的实际实现抽象超类
+    通过这个类的getDefaultToolKit可以获得该抽象类的子类实现
+    使用方法getImage通过图片路径获得图片对象
+    给窗体设置Icon
+如何设置窗体居中
+    首先获取当前设备的屏幕宽度与高度,通过ToolKit的getScreenSize方法
+    获得窗体宽高
+    然后两者相减/2即可
+如何修改窗体的皮肤
+    找到UIManager类,它用于管理外观
+    使用setLookAndFeel 设置外观,设置外观的字符串
+    使用系统默认的外观以及黑马增送的JTattoo或者liquidInf
+        UIManager.setLookAndFeel(MyLookAndFeel.JTATTOO_ACRYL);
+        我这里下载了一个仿mac的jar,作者的访问地址如下:</code></pre><p><a href="https://github.com/JackJiang2011/beautyeye" target="_blank" rel="noopener">DownLoad_BeautyEye</a></p>
+<h2 id="弹出提示"><a href="#弹出提示" class="headerlink" title="弹出提示"></a>弹出提示</h2><pre><code>在做一些数据处理的时候可能出现错误,比如做一个简单的四则运算
+那么输入的内容必定是数字
+    此时可以设置文本栏只能输入数字
+    或者输入其他内容点运算的时候弹出提示信息
+明显的第二种方式用户体验会更好
+这时候需要借助一个JOptionPane</code></pre><h2 id="窗体跳转"><a href="#窗体跳转" class="headerlink" title="窗体跳转"></a>窗体跳转</h2><pre><code>比如有个登录窗口,点击注册那么应该跳转到注册窗口
+    最简单的实现,点击时设置登录窗口的显示为false
+    并设置注册窗口的显示为true
+    但是这样做并不好,这样其实是将窗口隐藏,内存中依然存在
+    应该将登录窗口dispose,这个方法属于Window类,这时候这个窗体的资源将会被释放</code></pre>
+        
+    </section>
+</article>
+
+
+
+<div class="comments">
+    <div id="comments"></div>
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+    new Gitalk({
+        clientID: "7fbe80427f54741e289f",
+        clientSecret: "f34ed5fd92e54c9000bd37ba951948cb939deff5",
+        repo: "liao1816391.github.io",
+        owner: "LaoJQ",
+        admin: ["LaoJQ"],
+        id: "2019/10/14/Java/GUI/Description",
+        distractionFreeMode: true,
+        title: "GUI概叙",
+        body: "https://liao1816391.github.io.git/2019/10/14/Java/GUI/Description/",
+        labels: ["Description","GUI"]
+    }).render('comments');
+    </script>
+</div>
+
+</div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+            
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+        </script>
+    
+
+</body>
+</html>

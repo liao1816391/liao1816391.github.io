@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+
+    <title>枚举 | 寻找真实</title>
+    <meta name="author" content="LaoJQ">
+    <meta name="version" content="1.0.0">
+    <meta name="keywords" content>
+    <meta name="description" content="枚举是指将变量的值一一列举出来,变量的值只限于列举出的范围如,一周只有7天,一年只有12个月与单例模式不同的是,枚举中可以有一个以上的实例模拟枚举首先将自定义枚举类的构造私有化然后创建若干静态常量对象供外界访问1234567891011121314151617181920public class Direction &amp;#123;    public static final Direction FRONT = new Direction(&#34;前&#34;);    public stati...">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="寻找真实" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">寻找真实</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end">
+                <span class="nav-text">后端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Java">
+                <span class="nav-text">Java</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Design">
+                <span class="nav-text">Design</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/Algorithm">
+                <span class="nav-text">算法</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/atom.xml">
+                <span class="nav-text">订阅</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://liao1816391.github.io.git"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#模拟枚举"><span class="toc-number">1.</span> <span class="toc-text">模拟枚举</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#枚举"><span class="toc-number">2.</span> <span class="toc-text">枚举</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Enum-lt-E-extends-Enum-gt-类"><span class="toc-number">2.1.</span> <span class="toc-text">Enum&lt;E extends Enum&gt;类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#构造方法"><span class="toc-number">2.1.1.</span> <span class="toc-text">构造方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#成员方法"><span class="toc-number">2.1.2.</span> <span class="toc-text">成员方法</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            枚举
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://liao1816391.github.io.git/2019/10/27/Java/OOP/Enumeration/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-27T14:23:14.000Z" itemprop="datePublished">2019-10-27</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Enumeration/">Enumeration</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <pre><code>枚举是指将变量的值一一列举出来,变量的值只限于列举出的范围
+如,一周只有7天,一年只有12个月
+与单例模式不同的是,枚举中可以有一个以上的实例</code></pre><a id="more"></a>
+
+<h2 id="模拟枚举"><a href="#模拟枚举" class="headerlink" title="模拟枚举"></a>模拟枚举</h2><pre><code>首先将自定义枚举类的构造私有化
+然后创建若干静态常量对象供外界访问</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Direction</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Direction FRONT = <span class="keyword">new</span> Direction(<span class="string">"前"</span>);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Direction BEHIND = <span class="keyword">new</span> Direction(<span class="string">"后"</span>);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Direction LEFT = <span class="keyword">new</span> Direction(<span class="string">"左"</span>);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Direction RIGHT = <span class="keyword">new</span> Direction(<span class="string">"右"</span>);</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Direction</span><span class="params">(String name)</span></span>&#123;<span class="keyword">this</span>.name = name;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> name;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Direction front = Direction.FRONT;</span><br><span class="line">    System.out.println(front);</span><br><span class="line">    System.out.println(front.getName());</span><br><span class="line">    Direction behind = Direction.BEHIND;</span><br><span class="line">    System.out.println(behind.getName());</span><br><span class="line">    Direction left = Direction.LEFT;</span><br><span class="line">    System.out.println(left.getName());</span><br><span class="line">    Direction right = Direction.RIGHT;</span><br><span class="line">    System.out.println(right.getName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>执行结果如下 :</code></pre><p><img src="/images/Design/OOP/Enumeration_Custom.PNG" alt></p>
+<h2 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h2><pre><code>若自己定义枚举,其实是很麻烦的
+在JDK5,java为我们提供了枚举类
+格式为 :
+    public enum 枚举类名{
+        枚举项1,枚举项2,..;
+    }
+简单的实例如下 :</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Enum01 &#123;</span><br><span class="line">    FRONT,BEHIND,LEFT,RIGHT;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Enum01 enum01 = Enum01.FRONT;</span><br><span class="line">    System.out.println(enum01);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>可以看到打印的是枚举实例的名字
+结果如下 :</code></pre><p><img src="/images/Design/OOP/Enumeration_Demo01.PNG" alt></p>
+<pre><code>为什么会产生这样的结果呢?
+其实枚举是java为我们作了封装
+省去了我们自己创建枚举的设计过程
+使得代码更加简洁,打开枚举的字节码文件
+可以发现,需要了解枚举类才行
+结果如下 : </code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Decompiled by Jad v1.5.8e2. Copyright 2001 Pavel Kouznetsov.</span></span><br><span class="line"><span class="comment">// Jad home page: http://kpdus.tripod.com/jad.html</span></span><br><span class="line"><span class="comment">// Decompiler options: packimports(3) fieldsfirst ansi space </span></span><br><span class="line"><span class="comment">// Source File Name:   Enum01.java</span></span><br><span class="line"><span class="keyword">package</span> cn._03_enum;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Enum01</span> <span class="keyword">extends</span> <span class="title">Enum</span></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Enum01 FRONT;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Enum01 BEHIND;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Enum01 LEFT;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Enum01 RIGHT;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Enum01 $VALUES[];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> Enum01[] values()&#123;</span><br><span class="line">		<span class="keyword">return</span> (Enum01[])$VALUES.clone();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Enum01 <span class="title">valueOf</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (Enum01)Enum.valueOf(cn/_03_enum/Enum01, name);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Enum01</span><span class="params">(String s, <span class="keyword">int</span> i)</span></span>&#123;<span class="keyword">super</span>(s, i);&#125;</span><br><span class="line">	<span class="keyword">static</span> </span><br><span class="line">	&#123;</span><br><span class="line">		FRONT = <span class="keyword">new</span> Enum01(<span class="string">"FRONT"</span>, <span class="number">0</span>);</span><br><span class="line">		BEHIND = <span class="keyword">new</span> Enum01(<span class="string">"BEHIND"</span>, <span class="number">1</span>);</span><br><span class="line">		LEFT = <span class="keyword">new</span> Enum01(<span class="string">"LEFT"</span>, <span class="number">2</span>);</span><br><span class="line">		RIGHT = <span class="keyword">new</span> Enum01(<span class="string">"RIGHT"</span>, <span class="number">3</span>);</span><br><span class="line">		$VALUES = (<span class="keyword">new</span> Enum01[] &#123;</span><br><span class="line">			FRONT, BEHIND, LEFT, RIGHT</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Enum-lt-E-extends-Enum-gt-类"><a href="#Enum-lt-E-extends-Enum-gt-类" class="headerlink" title="Enum&lt;E extends Enum&gt;类"></a>Enum&lt;E extends Enum<e>&gt;类</e></h3><pre><code>该类是所有Java语言枚举类型的公共基本类</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Enum</span>&lt;<span class="title">E</span> <span class="keyword">extends</span> <span class="title">Enum</span>&lt;<span class="title">E</span>&gt;&gt;</span></span><br><span class="line"><span class="class">	<span class="keyword">extends</span> <span class="title">Objectimplements</span> <span class="title">Comparable</span>&lt;<span class="title">E</span>&gt;, <span class="title">Serializable</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h4><pre><code>单独的构造方法,用于响应枚举类型声明的编译器发出的代码</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="title">Enum</span><span class="params">(String name, <span class="keyword">int</span> ordinal)</span></span></span><br></pre></td></tr></table></figure>
+
+
+<pre><code>需要知道的是 classes是无法直接继承Enum类的</code></pre><h4 id="成员方法"><a href="#成员方法" class="headerlink" title="成员方法"></a>成员方法</h4><pre><code>枚举类无法克隆,重写了Cloneable的clone方法
+直接抛出CloneNotSupportedException</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> CloneNotSupportedException();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>public final int compareTo(E o)
+比较枚举的序号,也就是元素的位置
+通过class文件解析也发现了,第一个元素为0...n</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(E o)</span> </span>&#123;</span><br><span class="line">    Enum&lt;?&gt; other = (Enum&lt;?&gt;)o;</span><br><span class="line">    Enum&lt;E&gt; self = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">if</span> (self.getClass() != other.getClass() &amp;&amp; <span class="comment">// optimization</span></span><br><span class="line">        self.getDeclaringClass() != other.getDeclaringClass())</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> ClassCastException();</span><br><span class="line">    <span class="keyword">return</span> self.ordinal - other.ordinal;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>equals方法对Object作了重写
+但是也是比较的内存地址</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object other)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>==other;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>枚举类是不能有finalize方法的</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>getDeclaringClass获取声明的枚举类型
+判断两个枚举常量是否类型一致的时候
+若它们同时继承自枚举类,则返回其枚举类型
+若继承自枚举类的一个子类,则返回其父类</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> Class&lt;E&gt; <span class="title">getDeclaringClass</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Class&lt;?&gt; clazz = getClass();</span><br><span class="line">    Class&lt;?&gt; zuper = clazz.getSuperclass();</span><br><span class="line">    <span class="keyword">return</span> (zuper == Enum.class) ? (Class&lt;E&gt;)clazz : (Class&lt;E&gt;)zuper;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>这主要针对的是枚举类可能出现的匿名内部类的情况
+简单的案例测试如下 :</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>  <span class="keyword">enum</span>  Cat&#123;</span><br><span class="line">    WHITH()&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span> </span>&#123;System.out.println(<span class="string">"白喵,喵喵~"</span>);&#125;</span><br><span class="line">    &#125;,BLACK;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;System.out.println(<span class="string">"喵喵~"</span>);&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Dog &#123;</span><br><span class="line">    WHITH,BLACK;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Class c1 = Cat.BLACK.getDeclaringClass();</span><br><span class="line">    Class d1 = Dog.BLACK.getDeclaringClass();</span><br><span class="line">    System.out.println(c1 == d1);</span><br><span class="line"></span><br><span class="line">    Class c2 = Cat.WHITH.getDeclaringClass();</span><br><span class="line">    Class d2 = Dog.WHITH.getDeclaringClass();</span><br><span class="line">    System.out.println(c1 == c2);</span><br><span class="line">    System.out.println(d1 == d2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>执行结果如下 :</code></pre><p><img src="/images/Design/OOP/Enumeration_Declaring.PNG" alt></p>
+<pre><code>hashCode方法就是Object的,返回内存地址的哈希值
+name方法返回枚举常量的名称与toString一样</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> String <span class="title">name</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>ordinal方法返回该常量在这个枚举类型中的序数</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">ordinal</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ordinal;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>valueOf方法通过枚举字节码对象以及名称获取该常量</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T extends Enum&lt;T&gt;&gt; <span class="function">T <span class="title">valueOf</span><span class="params">(Class&lt;T&gt; enumType, String name)</span> </span>&#123;</span><br><span class="line">    T result = enumType.enumConstantDirectory().get(name);</span><br><span class="line">    <span class="keyword">if</span> (result != <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    <span class="keyword">if</span> (name == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">"Name is null"</span>);</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(</span><br><span class="line">        <span class="string">"No enum constant "</span> + enumType.getCanonicalName() + <span class="string">"."</span> + name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>仍然沿用猫的枚举类,调用其fun方法
+可以发现打印出  白喵,喵喵~
+简单案例如下 :</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">	Enum.valueOf(Cat.class,<span class="string">"WHITH"</span>).fun();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+    </section>
+</article>
+
+
+
+<div class="comments">
+    <div id="comments"></div>
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+    new Gitalk({
+        clientID: "7fbe80427f54741e289f",
+        clientSecret: "f34ed5fd92e54c9000bd37ba951948cb939deff5",
+        repo: "liao1816391.github.io",
+        owner: "LaoJQ",
+        admin: ["LaoJQ"],
+        id: "2019/10/27/Java/OOP/Enumeration",
+        distractionFreeMode: true,
+        title: "枚举",
+        body: "https://liao1816391.github.io.git/2019/10/27/Java/OOP/Enumeration/",
+        labels: ["Enumeration"]
+    }).render('comments');
+    </script>
+</div>
+
+</div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+            
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+        </script>
+    
+
+</body>
+</html>
